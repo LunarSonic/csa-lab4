@@ -25,10 +25,7 @@ def run_simulation(code_bin: str, data_bin: str, input_file: str) -> None:
     dp = DataPath(data_mem_size=2048, data_init=data_init, input_buffer=input_tokens)
     cu = ControlUnit(instructions, dp, MICROCODE_BYTES)
 
-    logging.basicConfig(
-        level=logging.DEBUG,
-        format="%(levelname)-8s %(name)s:%(message)s"
-    )
+    logging.basicConfig(level=logging.DEBUG, format="%(levelname)-8s %(name)s:%(message)s")
     logging.info("Simulation started")
 
     try:

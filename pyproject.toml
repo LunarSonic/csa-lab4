@@ -1,0 +1,30 @@
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "N",
+    "UP",
+    "B",
+    "SIM",
+    "RUF",
+    "RET",
+]
+ignore = ["RUF002", "RUF003"]
+
+[tool.mypy]
+check_untyped_defs = true
+ignore_missing_imports = true
+warn_return_any = false
+disallow_untyped_defs = false
+disallow_untyped_calls = false
+no_implicit_optional = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+enable_assertion_pass_hook = true

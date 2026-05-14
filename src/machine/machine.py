@@ -18,7 +18,7 @@ def run_simulation(code_bin: str, data_bin: str, input_file: str) -> None:
     try:
         with open(input_file) as f:
             content = f.read()
-            input_tokens = [ord(c) for c in content]
+            input_tokens = list(content)
     except FileNotFoundError:
         pass
 

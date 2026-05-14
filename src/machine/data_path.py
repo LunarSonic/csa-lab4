@@ -115,15 +115,26 @@ class DataPath:
     def signal_io_read(self, port: int):
         if not self.input_buffer:
             raise StopIteration(f"Input port {port} is empty")
-        val = self.input_buffer.pop(0)
-        self.input_value = ord(val) if isinstance(val, str) else int(val)
+        if port == 0:
+            while self.input_buffer and self.input_buffer[0].isspace():
+                self.input_buffer.pop(0)
+            if not self.input_buffer:
+                raise StopIteration(f"Input port {port} is empty after skipping spaces")
+            num_str = ""
+            while self.input_buffer and not self.input_buffer[0].isspace():
+                num_str += self.input_buffer.pop(0)
+            self.input_value = int(num_str) if num_str else 0
+        else:
+            val = self.input_buffer.pop(0)
+            self.input_value = ord(val) if isinstance(val, str) else int(val)
 
     def signal_io_write(self, port: int) -> None:
         val = self.alu_res
         if port == 3:
             self.output_buffer.append(chr(val & 0xFF))
         else:
-            self.output_buffer.append(str(val))
+            signed_val = self.sign_extend(val)
+            self.output_buffer.append(str(signed_val))
 
     def signal_wb_from_alu(self, idx: int) -> None:
         self.registers[idx] = self.alu_res

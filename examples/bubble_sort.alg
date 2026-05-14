@@ -1,15 +1,16 @@
-array arr = {5};
-arr[0] = 42;
-arr[1] = 7;
-arr[2] = 15;
-arr[3] = 3;
-arr[4] = 20;
+array arr = {100};
+int n = 0;
+read(n);
 
-int n = 5;
+int count = 0;
+while (count < n) {
+    read(arr[count]);
+    count = count + 1;
+}
+
 int i = 0;
 int j = 0;
 int temp = 0;
-int k = 0;
 
 while (i < n) {
     j = 0;
@@ -23,6 +24,8 @@ while (i < n) {
     }
     i = i + 1;
 }
+
+int k = 0;
 while (k < n) {
     print(arr[k]);
     print("\n");

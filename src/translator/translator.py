@@ -17,6 +17,9 @@ def compile_source(text: str):
     parser = Parser(lexer)
     tree = parser.parse_program()
 
+    semantic_analyzer = SemanticAnalyzer()
+    symbol_table, _ = semantic_analyzer.analyze(tree)
+
     print("\nAST:")
     printer = AstPrinter()
     printer.print(tree)

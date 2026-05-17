@@ -234,17 +234,17 @@ out_stdout: |2
   AST:
   {
    Declaration long: a
-    Number int: 5000000000
+    Number long: 5000000000
    Declaration long: b
-    Number int: 3000000000
+    Number long: 3000000000
    Declaration long: c
-    Number int: 7000000000
+    Number long: 7000000000
    Declaration long: d
-    Number int: 4294967295
+    Number long: 4294967295
    Declaration long: e
-    Number int: 1000000000
+    Number long: 1000000000
    Declaration long: f
-    Number int: 8500000000
+    Number long: 8500000000
    Declaration int: m
     Number int: 2147483647
    Declaration int: zero
@@ -269,7 +269,7 @@ out_stdout: |2
     BinOp: &
      BinOp: -
       VarRef: a
-      Number int: 1
+      Number long: 1
      VarRef: m
    Declaration long: res4
     BinOp: >
@@ -305,7 +305,7 @@ out_stdout: |2
       VarRef: b
       BinOp: +
        VarRef: c
-       Number int: 0
+       Number long: 0
    print(
     ArrRef: res1[
      Number int: 1

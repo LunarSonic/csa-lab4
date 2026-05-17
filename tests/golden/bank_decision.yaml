@@ -216,11 +216,11 @@ out_stdout: |2
   AST:
   {
    Declaration long: account_balance
-    Number int: 8000000000
+    Number long: 8000000000
    Declaration long: transaction_amount
-    Number int: 3000000000
+    Number long: 3000000000
    Declaration long: reserve
-    Number int: 1000000000
+    Number long: 1000000000
    Declaration int: is_blocked
     Number int: 0
    Declaration int: force_approve

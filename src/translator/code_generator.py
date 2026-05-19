@@ -200,11 +200,9 @@ class CodeGenerator(NodeVisitor):
                     Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=symbol.address
                 )
             )
-            # [addr] <- High word
             self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R2, AddrMode.INDIRECT, Register.R0)
             )
-            # [addr+1] <- Low word
             self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.INDIRECT_OFFSET, Register.R0, dst_imm=1)
             )
@@ -535,7 +533,6 @@ class CodeGenerator(NodeVisitor):
             self.instructions.append(BranchStub(end_label, Opcode.JMP))
 
             self.instructions.append(true_label)
-
             self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=1)
             )
@@ -597,8 +594,8 @@ class CodeGenerator(NodeVisitor):
             )
             self.instructions += self.push_r0()
             self.instructions.append(BranchStub(end_label, Opcode.JMP))
-            self.instructions.append(true_label)
 
+            self.instructions.append(true_label)
             self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=1)
             )
@@ -633,9 +630,6 @@ class CodeGenerator(NodeVisitor):
         self.emit_expression(node.index)
         self.instructions += self.pop_to_register(Register.R2)  # R2 <- Index
 
-        self.instructions.append(
-            Instruction(Opcode.MUL, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R2, src_imm=1)
-        )
         self.instructions.append(
             Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=base)
         )

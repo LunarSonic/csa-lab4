@@ -327,12 +327,12 @@ move 15 R2      ; R2 <- 15, загрузить число 15 в регистр R
 Флаги **выставляются и изменяются** только `cmp`, `add`, `sub`, `adc`\
 После выполнения этих команд АЛУ выставляет 4 флага:
 
-| Флаг | Название  | Условие установки в 1                                      |
-|------|-----------|------------------------------------------------------------|
-| `N`  | Negative  | Старший бит результата равен 1 (результат отрицательный)   |
-| `Z`  | Zero      | Результат операции равен нулю                              |
-| `V`  | Overflow  | Произошло переполнение знакового числа                     |
-| `C`  | Carry     | Произошёл перенос из старшего бита (беззнаковое переполнение) |
+| Флаг | Название | Условие установки в 1                                         |
+|------|----------|---------------------------------------------------------------|
+| `N`  | Negative | Старший бит результата равен 1 (результат отрицательный)      |
+| `Z`  | Zero     | Результат операции равен нулю                                 |
+| `V`  | Overflow | Произошло переполнение знакового числа                        |
+| `C`  | Carry    | Произошёл перенос из старшего бита (беззнаковое переполнение) |
 
 #### Цикл исполнения
 Выполнение каждой инструкции происходит в несколько последовательных этапов:
@@ -872,24 +872,6 @@ tests/test_golden.py::test_translator_and_machine[golden/hello_user_name.yaml] P
   DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    39 | PC:  22 | mPC:  5 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
   DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    40 | PC:  22 | mPC:  6 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
   DEBUG    src.machine.cache:cache.py:30 CACHE HIT read addr=2046 value=0
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    41 | PC:  22 | mPC: 10 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    42 | PC:  22 | mPC: 21 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    43 | PC:  22 | mPC: 17 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    44 | PC:  22 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    45 | PC:  22 | mPC:  1 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    46 | PC:  28 | mPC:  3 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    47 | PC:  28 | mPC:  4 | AR: 2046 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    48 | PC:  28 | mPC: 10 | AR: 2046 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    49 | PC:  28 | mPC: 22 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    50 | PC:  28 | mPC: 17 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    51 | PC:  28 | mPC:  0 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    52 | PC:  28 | mPC:  1 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    53 | PC:  34 | mPC:  3 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    54 | PC:  34 | mPC:  4 | AR: 2046 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    55 | PC:  34 | mPC: 10 | AR: 2046 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    56 | PC:  34 | mPC: 21 | AR: 2046 | TMP1:  100 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    57 | PC:  34 | mPC: 17 | AR: 2046 | TMP1:  100 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    58 | PC:  34 | mPC:  0 | AR: 2046 | TMP1:  100 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
   ...
   
   Final Output:
@@ -904,6 +886,6 @@ tests/test_golden.py::test_translator_and_machine[golden/hello_user_name.yaml] P
   2400
   43000
 
-  Total Ticks:  68420
-  Cache: hits=5405 misses=151 total=5556 hit_rate=97.3%  
+  Total Ticks:  67034
+  Cache: hits=5405 misses=151 total=5556 hit_rate=97.3%
 ```

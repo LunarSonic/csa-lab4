@@ -20,7 +20,7 @@ def compile_source(text: str):
     semantic_analyzer = SemanticAnalyzer()
     symbol_table, _ = semantic_analyzer.analyze(tree)
 
-    print("\nAST:")
+    print("AST:")
     printer = AstPrinter()
     printer.print(tree)
     print("-" * 30)

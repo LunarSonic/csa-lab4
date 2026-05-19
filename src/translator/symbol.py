@@ -27,6 +27,3 @@ class SymbolTable:
 
     def lookup(self, name):
         return self.symbols.get(name)
-
-    def define_address(self, name, address) -> None:
-        self.symbols[name].address = address

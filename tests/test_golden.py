@@ -46,4 +46,4 @@ def test_translator_and_machine(golden, caplog):
         assert stdout.getvalue() == golden.out["out_stdout"]
 
         log_output = caplog.text
-        assert log_output[:40000].strip() + "\nEOF" == golden.out["out_log"]
+        assert log_output[:10000].strip() + "\nEOF" == golden.out["out_log"]

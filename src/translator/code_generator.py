@@ -119,7 +119,6 @@ class CodeGenerator(NodeVisitor):
             self.visit(stmt)
 
     def visit_ast_declaration(self, node: AstDeclaration) -> None:
-        """Выделение памяти и инициализация переменных"""
         symbol = self.symbol_table.lookup(node.name)
         if symbol is None:
             return
@@ -169,7 +168,6 @@ class CodeGenerator(NodeVisitor):
             symbol.address = node.value.address
 
     def visit_ast_assign(self, node: AstAssign) -> None:
-        """Присваивание значения переменной"""
         symbol = self.symbol_table.lookup(node.ref.name)
         if symbol is None:
             return
@@ -645,9 +643,7 @@ class CodeGenerator(NodeVisitor):
         self.instructions += self.push_r0()
 
     def emit_string_literal(self, node: AstString) -> None:
-        """
-        Запись строкового литерала в память данных
-        """
+        """Запись строкового литерала в память данных"""
         if node.address != -1:
             return
         node.address = len(self.data)

@@ -50,7 +50,8 @@ class AstPrinter(NodeVisitor):
         self.tab -= 1
 
     def visit_ast_string(self, node: AstString) -> None:
-        self._print(f'String: "{node.value}"')
+        val = node.value.replace("\n", "\\n")
+        self._print(f'String: "{val}"')
 
     def visit_ast_number(self, node: AstNumber) -> None:
         self._print(f"Number {node.type_}: {node.value}")

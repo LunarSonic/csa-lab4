@@ -81,7 +81,7 @@ class Parser:
         var_name = self.current_token.value
         self.process(TokenType.VARIABLE_NAME)
         self.process(TokenType.ASSIGN)
-        if type_token.type == TokenType.ARRAY:
+        if type_token.type in (TokenType.ARRAY, TokenType.STRING_TYPE) and self.current_token.type == TokenType.LBRACE:
             self.process(TokenType.LBRACE)
             size = int(self.current_token.value)
             self.process(TokenType.NUMBER)

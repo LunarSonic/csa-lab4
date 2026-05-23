@@ -3,15 +3,7 @@ from collections.abc import Set
 from typing import Any
 
 from src.isa.isa import Instruction, decode_instruction
-from src.machine.microcode import (
-    DISPATCH_DST_MODE,
-    DISPATCH_OPCODE,
-    DISPATCH_SRC_MODE,
-    DISPATCH_WB_MODE,
-    MICROCODE_BYTES,
-    Signal,
-    decode_microinstruction,
-)
+from src.machine.microcode import DISPATCH_OPCODE_SRC_DST, MicroInstruction, Signal, decode_microinstruction
 
 logger = logging.getLogger(__name__)
 
@@ -37,135 +29,98 @@ class ControlUnit:
         if self.stall_cycles > 0:
             self.stall_cycles -= 1
             self.ticks += 1
+            logger.debug(self)
             return
 
-        signals = decode_microinstruction(MICROCODE_BYTES, self.mpc)
-
-        logger.debug(self)
-
-        self.execute_signals(signals)
-        self.next_mpc(signals)
+        micro_cmd = decode_microinstruction(self.microcode, self.mpc)
+        self.execute_signals(micro_cmd.signals)
+        self.next_mpc(micro_cmd)
         self.ticks += 1
+        logger.debug(self)
 
     def execute_signals(self, signals: Set[Signal]) -> None:
         if Signal.HALT in signals:
             self.halted = True
+            return
 
         if Signal.INSTRUCTION_MEMORY_LOAD in signals:
             self.ir, _ = decode_instruction(self.instr_mem, self.pc)
 
-        if any(
-            s in signals
-            for s in (
-                Signal.LATCH_IR,
-                Signal.IO_READ,
-                Signal.IO_WRITE,
-                Signal.LATCH_TMP1_REG,
-                Signal.LATCH_TMP1_IMM,
-                Signal.LATCH_TMP2_REG,
-                Signal.LATCH_TMP2_IMM,
-                Signal.SET_AR_SRC,
-                Signal.SET_AR_DST,
-                Signal.PC_BRANCH,
-            )
-        ):
-            assert self.ir is not None, "IR must be loaded before use"
+        if self.ir is None:
+            return
+
+        ir = self.ir
 
         if Signal.LATCH_IR in signals:
-            assert self.ir is not None
-            size = 2
-            if self.ir.src_mode.value in (1, 3):
-                size += 4
-            if self.ir.dst_mode.value in (1, 3):
-                size += 4
+            logger.debug(f"signal_latch_ir @{ir.opcode.name}")
+            size = 2 + (4 if ir.src_mode.value in (1, 3) else 0) + (4 if ir.dst_mode.value in (1, 3) else 0)
             self.pc += size
+
+        if Signal.SET_AR_SRC in signals:
+            self.dp.signal_set_ar(self.ir.src_index.value)
+        if Signal.SET_AR_DST in signals:
+            self.dp.signal_set_ar(self.ir.dst_index.value)
+        if Signal.SET_AR_SRC_OFF in signals:
+            self.dp.signal_set_ar_off(self.ir.src_index.value, self.ir.src_imm)
+        if Signal.SET_AR_DST_OFF in signals:
+            self.dp.signal_set_ar_off(self.ir.dst_index.value, self.ir.dst_imm)
+
+        if Signal.IO_READ in signals:
+            self.dp.signal_io_read(self.ir.src_imm)
+        if Signal.LATCH_TMP1_IMM in signals:
+            self.dp.signal_latch_tmp1_imm(self.ir.src_imm)
+        if Signal.LATCH_TMP1_REG in signals:
+            self.dp.signal_latch_tmp1_reg(self.ir.src_index.value)
+        if Signal.LATCH_TMP2_REG in signals:
+            self.dp.signal_latch_tmp2_reg(self.ir.dst_index.value)
+        if Signal.LATCH_TMP2_IMM in signals:
+            self.dp.signal_latch_tmp2_imm(self.ir.dst_imm)
+        if Signal.LATCH_TMP2_IO in signals:
+            self.dp.signal_latch_tmp2_io()
 
         if Signal.LATCH_TMP1_MEM in signals:
             self.stall_cycles = self.dp.signal_latch_tmp1_mem() - 1
-
         if Signal.LATCH_TMP2_MEM in signals:
             self.stall_cycles = self.dp.signal_latch_tmp2_mem() - 1
 
-        if Signal.DATA_MEMORY_STORE in signals:
-            delay = self.dp.signal_mem_store()
-            self.stall_cycles = delay - 1
+        alu_op = next((s for s in signals if Signal.OP_ADD <= s <= Signal.OP_PASS_TMP2), None)
+        if alu_op:
+            self.dp.alu_compute(alu_op)
 
-        if Signal.IO_READ in signals:
-            assert self.ir is not None
-            self.dp.signal_io_read(self.ir.src_imm)
-        if Signal.LATCH_TMP2_IO in signals:
-            self.dp.signal_latch_tmp2_io()
+        if Signal.WB_FROM_ALU in signals:
+            self.dp.signal_wb_from_alu(self.ir.dst_index.value)
+        if Signal.DATA_MEMORY_STORE in signals:
+            self.stall_cycles = self.dp.signal_mem_store() - 1
         if Signal.IO_WRITE in signals:
-            assert self.ir is not None
             self.dp.signal_io_write(self.ir.dst_imm)
 
-        if Signal.LATCH_TMP1_REG in signals:
+        if any(Signal.COND_TRUE <= s <= Signal.COND_LESS_EQUAL for s in signals):
+            self.branch_done = False
+            if Signal.COND_TRUE in signals:
+                self.branch_done = True
+            elif Signal.COND_EQUAL in signals:
+                self.branch_done = self.dp.flag_z
+            elif Signal.COND_NOT_EQUAL in signals:
+                self.branch_done = not self.dp.flag_z
+            elif Signal.COND_GREATER in signals:
+                self.branch_done = (not self.dp.flag_z) and (self.dp.flag_n == self.dp.flag_v)
+            elif Signal.COND_GREATER_EQUAL in signals:
+                self.branch_done = self.dp.flag_n == self.dp.flag_v
+            elif Signal.COND_LESS in signals:
+                self.branch_done = self.dp.flag_n != self.dp.flag_v
+            elif Signal.COND_LESS_EQUAL in signals:
+                self.branch_done = self.dp.flag_z or (self.dp.flag_n != self.dp.flag_v)
+
+            if Signal.PC_BRANCH in signals and self.branch_done:
+                self.pc = self.ir.dst_imm
+
+    def next_mpc(self, micro_cmd: MicroInstruction) -> None:
+        if Signal.MPC_DECODE in micro_cmd.signals:
             assert self.ir is not None
-            self.dp.signal_latch_tmp1_reg(self.ir.src_index.value)
-        if Signal.LATCH_TMP1_IMM in signals:
-            assert self.ir is not None
-            self.dp.signal_latch_tmp1_imm(self.ir.src_imm)
-        if Signal.LATCH_TMP2_REG in signals:
-            assert self.ir is not None
-            self.dp.signal_latch_tmp2_reg(self.ir.dst_index.value)
-        if Signal.LATCH_TMP2_IMM in signals:
-            assert self.ir is not None
-            self.dp.signal_latch_tmp2_imm(self.ir.dst_imm)
-
-        for s in signals:
-            if Signal.OP_ADD <= s <= Signal.OP_PASS_TMP2:
-                self.dp.alu_compute(s)
-            if Signal.WB_FROM_ALU in signals:
-                assert self.ir is not None
-                self.dp.signal_wb_from_alu(self.ir.dst_index.value)
-
-        if Signal.SET_AR_SRC in signals or Signal.SET_AR_DST in signals:
-            assert self.ir is not None
-            idx = self.ir.src_index.value if Signal.SET_AR_SRC in signals else self.ir.dst_index.value
-            self.dp.signal_set_ar(idx)
-
-        if Signal.SET_AR_SRC_OFF in signals or Signal.SET_AR_DST_OFF in signals:
-            assert self.ir is not None
-            idx = self.ir.src_index.value if Signal.SET_AR_SRC_OFF in signals else self.ir.dst_index.value
-            off = self.ir.src_imm if Signal.SET_AR_SRC_OFF in signals else self.ir.dst_imm
-            self.dp.signal_set_ar_off(idx, off)
-
-        if Signal.COND_EQUAL in signals:
-            self.branch_done = self.dp.flag_z
-        if Signal.COND_NOT_EQUAL in signals:
-            self.branch_done = not self.dp.flag_z
-        if Signal.COND_TRUE in signals:
-            self.branch_done = True
-        if Signal.COND_GREATER in signals:
-            self.branch_done = (not self.dp.flag_z) and (self.dp.flag_n == self.dp.flag_v)
-        if Signal.COND_GREATER_EQUAL in signals:
-            self.branch_done = self.dp.flag_n == self.dp.flag_v
-        if Signal.COND_LESS in signals:
-            self.branch_done = self.dp.flag_n != self.dp.flag_v
-        if Signal.COND_LESS_EQUAL in signals:
-            self.branch_done = self.dp.flag_z or (self.dp.flag_n != self.dp.flag_v)
-
-        if Signal.PC_BRANCH in signals and self.branch_done:
-            assert self.ir is not None
-            self.pc = self.ir.dst_imm
-
-    def next_mpc(self, signals: Set[Signal]) -> None:
-        if Signal.MPC_ZERO in signals:
-            self.mpc = 0
-            return
-
-        assert self.ir is not None, "IR must be loaded for dispatch signals"
-
-        if Signal.MPC_DISPATCH_OP in signals:
-            self.mpc = DISPATCH_OPCODE[self.ir.opcode.value]
-        elif Signal.MPC_DISPATCH_SRC in signals:
-            self.mpc = DISPATCH_SRC_MODE[self.ir.src_mode.value]
-        elif Signal.MPC_DISPATCH_DST in signals:
-            self.mpc = DISPATCH_DST_MODE[self.ir.dst_mode.value]
-        elif Signal.MPC_DISPATCH_WB in signals:
-            self.mpc = DISPATCH_WB_MODE[self.ir.dst_mode.value]
-        elif Signal.MPC_NEXT in signals:
-            self.mpc += 1
+            key = (self.ir.opcode.value, self.ir.src_mode.value, self.ir.dst_mode.value)
+            self.mpc = DISPATCH_OPCODE_SRC_DST[key]
+        else:
+            self.mpc = micro_cmd.next_addr
 
     def __repr__(self) -> str:
         regs = self.dp.registers

@@ -33,61 +33,66 @@ in_source: |-
       k = k + 1;
   }
 
-in_stdin: 10 4 9 2400 75 5 -134 0 -6 35 43000
+in_stdin: 10 4 10 9 2400 75 5 -134 0 -6 35
 
 out_log: |-
   INFO     root:machine.py:29 Simulation started
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     0 | PC:   0 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     1 | PC:   0 | mPC:  1 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     2 | PC:   6 | mPC:  3 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     3 | PC:   6 | mPC:  4 | AR:   0 | TMP1: 2047 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     4 | PC:   6 | mPC: 10 | AR:   0 | TMP1: 2047 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     5 | PC:   6 | mPC: 21 | AR:   0 | TMP1: 2047 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     6 | PC:   6 | mPC: 17 | AR:   0 | TMP1: 2047 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     7 | PC:   6 | mPC:  0 | AR:   0 | TMP1: 2047 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     8 | PC:   6 | mPC:  1 | AR:   0 | TMP1: 2047 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:     9 | PC:  12 | mPC:  3 | AR:   0 | TMP1: 2047 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    10 | PC:  12 | mPC:  4 | AR:   0 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    11 | PC:  12 | mPC: 10 | AR:   0 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    12 | PC:  12 | mPC: 21 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    13 | PC:  12 | mPC: 17 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    14 | PC:  12 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    15 | PC:  12 | mPC:  1 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    16 | PC:  18 | mPC:  3 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    17 | PC:  18 | mPC:  4 | AR:   0 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    18 | PC:  18 | mPC: 10 | AR:   0 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    19 | PC:  18 | mPC: 24 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    20 | PC:  18 | mPC: 17 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    21 | PC:  18 | mPC:  0 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    22 | PC:  18 | mPC:  1 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    23 | PC:  20 | mPC:  2 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    24 | PC:  20 | mPC: 13 | AR:   0 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    25 | PC:  20 | mPC: 14 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.cache:cache.py:35 CACHE MISS read addr=2046 waiting 10 ticks...
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    35 | PC:  20 | mPC: 21 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    36 | PC:  20 | mPC: 18 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.cache:cache.py:45 CACHE HIT write addr=2046 value=0
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    37 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    38 | PC:  20 | mPC:  1 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    39 | PC:  22 | mPC:  5 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    40 | PC:  22 | mPC:  6 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     1 | PC:   6 | mPC:  1 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     2 | PC:   6 | mPC:  2 | AR:   0 | TMP1: 2047 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     3 | PC:   6 | mPC:  0 | AR:   0 | TMP1: 2047 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     4 | PC:  12 | mPC:  1 | AR:   0 | TMP1: 2047 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     5 | PC:  12 | mPC:  2 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     6 | PC:  12 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @SUB
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     7 | PC:  18 | mPC: 32 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     8 | PC:  18 | mPC: 33 | AR:   0 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     9 | PC:  18 | mPC: 34 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    10 | PC:  18 | mPC:  0 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    11 | PC:  20 | mPC:  5 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    12 | PC:  20 | mPC:  6 | AR: 2046 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    13 | PC:  20 | mPC:  7 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.cache:cache.py:48 CACHE MISS write addr=2046 value=0 waiting 10 ticks
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    14 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    15 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    16 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    17 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    18 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    19 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    20 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    21 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    22 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    23 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    24 | PC:  22 | mPC:  8 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    25 | PC:  22 | mPC:  9 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
   DEBUG    src.machine.cache:cache.py:30 CACHE HIT read addr=2046 value=0
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    41 | PC:  22 | mPC: 10 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    42 | PC:  22 | mPC: 21 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    43 | PC:  22 | mPC: 17 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    44 | PC:  22 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    45 | PC:  22 | mPC:  1 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    46 | PC:  28 | mPC:  3 | AR: 2046 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    47 | PC:  28 | mPC:  4 | AR: 2046 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    48 | PC:  28 | mPC: 10 | AR: 2046 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    49 | PC:  28 | mPC: 22 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    50 | PC:  28 | mPC: 17 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    51 | PC:  28 | mPC:  0 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    52 | PC:  28 | mPC:  1 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    53 | PC:  34 | mPC:  3 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    54 | PC:  34 | mPC:  4 | AR: 2046 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:44 TICK:    55 | PC:  34 | mPC: 10 | AR: 2046 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machin
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    26 | PC:  22 | mPC: 10 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    27 | PC:  22 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @ADD
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    28 | PC:  28 | mPC: 20 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    29 | PC:  28 | mPC: 21 | AR: 2046 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    30 | PC:  28 | mPC: 22 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    31 | PC:  28 | mPC:  0 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    32 | PC:  34 | mPC:  1 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    33 | PC:  34 | mPC:  2 | AR: 2046 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    34 | PC:  34 | mPC:  0 | AR: 2046 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    35 | PC:  36 | mPC:  5 | AR: 2046 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    36 | PC:  36 | mPC:  6 | AR: 100 | TMP1:  100 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    37 | PC:  36 | mPC:  7 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.cache:cache.py:48 CACHE MISS write addr=100 value=0 waiting 10 ticks
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    38 | PC:  36 | mPC:  0 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    39 | PC:  36 | mPC:  0 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    40 | PC:  36 | mPC:  0 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    41 | PC:  36 | mPC:  0 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    42 | PC:  36 | mPC:  0 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    43 | PC:  36 | mPC:  0 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    44 | PC:  36 | mPC:  0 | AR: 100 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1: 100 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.m
   EOF
 
 
@@ -226,11 +231,11 @@ out_stdout: |
   }
   ------------------------------
   Lines of code: 33
-  Code instructions: 443
-  Code size (bytes): 1830
+  Code instructions: 445
+  Code size (bytes): 1834
   Data words (32-bit): 108
   Data size (bytes): 432
-  Total size (bytes): 2262
+  Total size (bytes): 2266
   ============================================================
   Final Output:
   -134
@@ -239,13 +244,13 @@ out_stdout: |
   4
   5
   9
+  10
   35
   75
   2400
-  43000
 
-  Total Ticks:  67034
-  Cache: hits=5405 misses=151 total=5556 hit_rate=97.3%
+  Total Ticks:  39314
+  Cache: hits=3912 misses=166 total=4078 hit_rate=95.9%
 
 out_instructions_hex: |2-
     0 - 3A01000007FF         - MOVE 2047 R7
@@ -257,440 +262,442 @@ out_instructions_hex: |2-
    28 - 0A0100000064         - MOVE 100 R1
    34 - 8801                 - MOVE R0 [R1]
    36 - 0A0100000064         - MOVE 100 R1
-   42 - 8A0D00000000         - IN 0 [R1]
-   48 - 020100000000         - MOVE 0 R0
-   54 - 3A0400000001         - SUB 1 R7
-   60 - B801                 - MOVE R0 [R7]
-   62 - 05C1                 - MOVE [R7] R0
-   64 - 3A0200000001         - ADD 1 R7
-   70 - 0A0100000065         - MOVE 101 R1
-   76 - 8801                 - MOVE R0 [R1]
-   78 - 0A0100000065         - MOVE 101 R1
-   84 - 0441                 - MOVE [R1] R0
-   86 - 3A0400000001         - SUB 1 R7
-   92 - B801                 - MOVE R0 [R7]
-   94 - 0A0100000064         - MOVE 100 R1
-  100 - 0441                 - MOVE [R1] R0
-  102 - 3A0400000001         - SUB 1 R7
-  108 - B801                 - MOVE R0 [R7]
-  110 - 15C1                 - MOVE [R7] R2
-  112 - 3A0200000001         - ADD 1 R7
-  118 - 0DC1                 - MOVE [R7] R1
-  120 - 3A0200000001         - ADD 1 R7
-  126 - 088C                 - CMP R2 R1
-  128 - 40150000009A         - BLT 154
-  134 - 020100000000         - MOVE 0 R0
-  140 - 3A0400000001         - SUB 1 R7
-  146 - B801                 - MOVE R0 [R7]
-  148 - 400F000000A8         - JMP 168
-  154 - 020100000001         - MOVE 1 R0
-  160 - 3A0400000001         - SUB 1 R7
-  166 - B801                 - MOVE R0 [R7]
-  168 - 05C1                 - MOVE [R7] R0
-  170 - 3A0200000001         - ADD 1 R7
-  176 - 020C00000000         - CMP 0 R0
-  182 - 401000000142         - BEQ 322
-  188 - 0A0100000065         - MOVE 101 R1
-  194 - 0441                 - MOVE [R1] R0
-  196 - 3A0400000001         - SUB 1 R7
-  202 - B801                 - MOVE R0 [R7]
-  204 - 15C1                 - MOVE [R7] R2
-  206 - 3A0200000001         - ADD 1 R7
-  212 - 020100000000         - MOVE 0 R0
-  218 - 0082                 - ADD R2 R0
-  220 - 3A0400000001         - SUB 1 R7
-  226 - B801                 - MOVE R0 [R7]
-  228 - 0DC1                 - MOVE [R7] R1
-  230 - 3A0200000001         - ADD 1 R7
-  236 - 8A0D00000000         - IN 0 [R1]
-  242 - 0A0100000065         - MOVE 101 R1
-  248 - 0441                 - MOVE [R1] R0
-  250 - 3A0400000001         - SUB 1 R7
-  256 - B801                 - MOVE R0 [R7]
-  258 - 020100000001         - MOVE 1 R0
-  264 - 3A0400000001         - SUB 1 R7
-  270 - B801                 - MOVE R0 [R7]
-  272 - 15C1                 - MOVE [R7] R2
-  274 - 3A0200000001         - ADD 1 R7
-  280 - 0DC1                 - MOVE [R7] R1
-  282 - 3A0200000001         - ADD 1 R7
-  288 - 0882                 - ADD R2 R1
-  290 - 0041                 - MOVE R1 R0
-  292 - 3A0400000001         - SUB 1 R7
-  298 - B801                 - MOVE R0 [R7]
-  300 - 05C1                 - MOVE [R7] R0
-  302 - 3A0200000001         - ADD 1 R7
-  308 - 0A0100000065         - MOVE 101 R1
-  314 - 8801                 - MOVE R0 [R1]
-  316 - 400F0000004E         - JMP 78
-  322 - 020100000000         - MOVE 0 R0
-  328 - 3A0400000001         - SUB 1 R7
-  334 - B801                 - MOVE R0 [R7]
-  336 - 05C1                 - MOVE [R7] R0
-  338 - 3A0200000001         - ADD 1 R7
-  344 - 0A0100000066         - MOVE 102 R1
-  350 - 8801                 - MOVE R0 [R1]
-  352 - 020100000000         - MOVE 0 R0
-  358 - 3A0400000001         - SUB 1 R7
-  364 - B801                 - MOVE R0 [R7]
-  366 - 05C1                 - MOVE [R7] R0
-  368 - 3A0200000001         - ADD 1 R7
-  374 - 0A0100000067         - MOVE 103 R1
-  380 - 8801                 - MOVE R0 [R1]
-  382 - 020100000000         - MOVE 0 R0
-  388 - 3A0400000001         - SUB 1 R7
-  394 - B801                 - MOVE R0 [R7]
-  396 - 05C1                 - MOVE [R7] R0
-  398 - 3A0200000001         - ADD 1 R7
-  404 - 0A0100000068         - MOVE 104 R1
-  410 - 8801                 - MOVE R0 [R1]
-  412 - 0A0100000066         - MOVE 102 R1
-  418 - 0441                 - MOVE [R1] R0
-  420 - 3A0400000001         - SUB 1 R7
-  426 - B801                 - MOVE R0 [R7]
-  428 - 0A0100000064         - MOVE 100 R1
-  434 - 0441                 - MOVE [R1] R0
-  436 - 3A0400000001         - SUB 1 R7
-  442 - B801                 - MOVE R0 [R7]
-  444 - 15C1                 - MOVE [R7] R2
-  446 - 3A0200000001         - ADD 1 R7
-  452 - 0DC1                 - MOVE [R7] R1
-  454 - 3A0200000001         - ADD 1 R7
-  460 - 088C                 - CMP R2 R1
-  462 - 4015000001E8         - BLT 488
-  468 - 020100000000         - MOVE 0 R0
-  474 - 3A0400000001         - SUB 1 R7
-  480 - B801                 - MOVE R0 [R7]
-  482 - 400F000001F6         - JMP 502
-  488 - 020100000001         - MOVE 1 R0
-  494 - 3A0400000001         - SUB 1 R7
-  500 - B801                 - MOVE R0 [R7]
-  502 - 05C1                 - MOVE [R7] R0
-  504 - 3A0200000001         - ADD 1 R7
-  510 - 020C00000000         - CMP 0 R0
-  516 - 4010000005DA         - BEQ 1498
-  522 - 020100000000         - MOVE 0 R0
-  528 - 3A0400000001         - SUB 1 R7
-  534 - B801                 - MOVE R0 [R7]
-  536 - 05C1                 - MOVE [R7] R0
-  538 - 3A0200000001         - ADD 1 R7
-  544 - 0A0100000067         - MOVE 103 R1
-  550 - 8801                 - MOVE R0 [R1]
-  552 - 0A0100000067         - MOVE 103 R1
-  558 - 0441                 - MOVE [R1] R0
-  560 - 3A0400000001         - SUB 1 R7
-  566 - B801                 - MOVE R0 [R7]
-  568 - 0A0100000064         - MOVE 100 R1
-  574 - 0441                 - MOVE [R1] R0
-  576 - 3A0400000001         - SUB 1 R7
-  582 - B801                 - MOVE R0 [R7]
-  584 - 0A0100000066         - MOVE 102 R1
-  590 - 0441                 - MOVE [R1] R0
-  592 - 3A0400000001         - SUB 1 R7
-  598 - B801                 - MOVE R0 [R7]
-  600 - 15C1                 - MOVE [R7] R2
-  602 - 3A0200000001         - ADD 1 R7
-  608 - 0DC1                 - MOVE [R7] R1
-  610 - 3A0200000001         - ADD 1 R7
-  616 - 0884                 - SUB R2 R1
-  618 - 0041                 - MOVE R1 R0
-  620 - 3A0400000001         - SUB 1 R7
-  626 - B801                 - MOVE R0 [R7]
-  628 - 020100000001         - MOVE 1 R0
-  634 - 3A0400000001         - SUB 1 R7
-  640 - B801                 - MOVE R0 [R7]
-  642 - 15C1                 - MOVE [R7] R2
-  644 - 3A0200000001         - ADD 1 R7
-  650 - 0DC1                 - MOVE [R7] R1
-  652 - 3A0200000001         - ADD 1 R7
-  658 - 0884                 - SUB R2 R1
-  660 - 0041                 - MOVE R1 R0
-  662 - 3A0400000001         - SUB 1 R7
-  668 - B801                 - MOVE R0 [R7]
-  670 - 15C1                 - MOVE [R7] R2
-  672 - 3A0200000001         - ADD 1 R7
-  678 - 0DC1                 - MOVE [R7] R1
-  680 - 3A0200000001         - ADD 1 R7
-  686 - 088C                 - CMP R2 R1
-  688 - 4015000002CA         - BLT 714
-  694 - 020100000000         - MOVE 0 R0
-  700 - 3A0400000001         - SUB 1 R7
-  706 - B801                 - MOVE R0 [R7]
-  708 - 400F000002D8         - JMP 728
-  714 - 020100000001         - MOVE 1 R0
-  720 - 3A0400000001         - SUB 1 R7
-  726 - B801                 - MOVE R0 [R7]
-  728 - 05C1                 - MOVE [R7] R0
-  730 - 3A0200000001         - ADD 1 R7
-  736 - 020C00000000         - CMP 0 R0
-  742 - 40100000058A         - BEQ 1418
-  748 - 0A0100000067         - MOVE 103 R1
-  754 - 0441                 - MOVE [R1] R0
-  756 - 3A0400000001         - SUB 1 R7
-  762 - B801                 - MOVE R0 [R7]
-  764 - 15C1                 - MOVE [R7] R2
-  766 - 3A0200000001         - ADD 1 R7
-  772 - 020100000000         - MOVE 0 R0
-  778 - 0082                 - ADD R2 R0
-  780 - 3A0400000001         - SUB 1 R7
-  786 - B801                 - MOVE R0 [R7]
-  788 - 0DC1                 - MOVE [R7] R1
-  790 - 3A0200000001         - ADD 1 R7
-  796 - 0441                 - MOVE [R1] R0
-  798 - 3A0400000001         - SUB 1 R7
-  804 - B801                 - MOVE R0 [R7]
-  806 - 0A0100000067         - MOVE 103 R1
-  812 - 0441                 - MOVE [R1] R0
-  814 - 3A0400000001         - SUB 1 R7
-  820 - B801                 - MOVE R0 [R7]
-  822 - 020100000001         - MOVE 1 R0
-  828 - 3A0400000001         - SUB 1 R7
-  834 - B801                 - MOVE R0 [R7]
-  836 - 15C1                 - MOVE [R7] R2
-  838 - 3A0200000001         - ADD 1 R7
-  844 - 0DC1                 - MOVE [R7] R1
-  846 - 3A0200000001         - ADD 1 R7
-  852 - 0882                 - ADD R2 R1
-  854 - 0041                 - MOVE R1 R0
-  856 - 3A0400000001         - SUB 1 R7
-  862 - B801                 - MOVE R0 [R7]
-  864 - 15C1                 - MOVE [R7] R2
-  866 - 3A0200000001         - ADD 1 R7
-  872 - 020100000000         - MOVE 0 R0
-  878 - 0082                 - ADD R2 R0
-  880 - 3A0400000001         - SUB 1 R7
-  886 - B801                 - MOVE R0 [R7]
-  888 - 0DC1                 - MOVE [R7] R1
-  890 - 3A0200000001         - ADD 1 R7
-  896 - 0441                 - MOVE [R1] R0
-  898 - 3A0400000001         - SUB 1 R7
-  904 - B801                 - MOVE R0 [R7]
-  906 - 15C1                 - MOVE [R7] R2
-  908 - 3A0200000001         - ADD 1 R7
-  914 - 0DC1                 - MOVE [R7] R1
-  916 - 3A0200000001         - ADD 1 R7
-  922 - 088C                 - CMP R2 R1
-  924 - 4013000003B6         - BGT 950
-  930 - 020100000000         - MOVE 0 R0
-  936 - 3A0400000001         - SUB 1 R7
-  942 - B801                 - MOVE R0 [R7]
-  944 - 400F000003C4         - JMP 964
-  950 - 020100000001         - MOVE 1 R0
-  956 - 3A0400000001         - SUB 1 R7
-  962 - B801                 - MOVE R0 [R7]
-  964 - 05C1                 - MOVE [R7] R0
-  966 - 3A0200000001         - ADD 1 R7
-  972 - 020C00000000         - CMP 0 R0
-  978 - 40100000053A         - BEQ 1338
-  984 - 0A0100000067         - MOVE 103 R1
-  990 - 0441                 - MOVE [R1] R0
-  992 - 3A0400000001         - SUB 1 R7
-  998 - B801                 - MOVE R0 [R7]
-  1000 - 15C1                 - MOVE [R7] R2
-  1002 - 3A0200000001         - ADD 1 R7
-  1008 - 020100000000         - MOVE 0 R0
-  1014 - 0082                 - ADD R2 R0
-  1016 - 3A0400000001         - SUB 1 R7
-  1022 - B801                 - MOVE R0 [R7]
-  1024 - 0DC1                 - MOVE [R7] R1
-  1026 - 3A0200000001         - ADD 1 R7
-  1032 - 0441                 - MOVE [R1] R0
-  1034 - 3A0400000001         - SUB 1 R7
-  1040 - B801                 - MOVE R0 [R7]
-  1042 - 05C1                 - MOVE [R7] R0
-  1044 - 3A0200000001         - ADD 1 R7
-  1050 - 0A0100000068         - MOVE 104 R1
-  1056 - 8801                 - MOVE R0 [R1]
-  1058 - 0A0100000067         - MOVE 103 R1
-  1064 - 0441                 - MOVE [R1] R0
-  1066 - 3A0400000001         - SUB 1 R7
-  1072 - B801                 - MOVE R0 [R7]
-  1074 - 020100000001         - MOVE 1 R0
-  1080 - 3A0400000001         - SUB 1 R7
-  1086 - B801                 - MOVE R0 [R7]
-  1088 - 15C1                 - MOVE [R7] R2
-  1090 - 3A0200000001         - ADD 1 R7
-  1096 - 0DC1                 - MOVE [R7] R1
-  1098 - 3A0200000001         - ADD 1 R7
-  1104 - 0882                 - ADD R2 R1
-  1106 - 0041                 - MOVE R1 R0
-  1108 - 3A0400000001         - SUB 1 R7
-  1114 - B801                 - MOVE R0 [R7]
-  1116 - 15C1                 - MOVE [R7] R2
-  1118 - 3A0200000001         - ADD 1 R7
-  1124 - 020100000000         - MOVE 0 R0
-  1130 - 0082                 - ADD R2 R0
-  1132 - 3A0400000001         - SUB 1 R7
-  1138 - B801                 - MOVE R0 [R7]
-  1140 - 0DC1                 - MOVE [R7] R1
-  1142 - 3A0200000001         - ADD 1 R7
-  1148 - 0441                 - MOVE [R1] R0
-  1150 - 3A0400000001         - SUB 1 R7
-  1156 - B801                 - MOVE R0 [R7]
-  1158 - 0A0100000067         - MOVE 103 R1
-  1164 - 0441                 - MOVE [R1] R0
-  1166 - 3A0400000001         - SUB 1 R7
-  1172 - B801                 - MOVE R0 [R7]
-  1174 - 15C1                 - MOVE [R7] R2
-  1176 - 3A0200000001         - ADD 1 R7
-  1182 - 020100000000         - MOVE 0 R0
-  1188 - 0082                 - ADD R2 R0
-  1190 - 3A0400000001         - SUB 1 R7
-  1196 - B801                 - MOVE R0 [R7]
-  1198 - 0DC1                 - MOVE [R7] R1
-  1200 - 3A0200000001         - ADD 1 R7
-  1206 - 05C1                 - MOVE [R7] R0
-  1208 - 3A0200000001         - ADD 1 R7
-  1214 - 8801                 - MOVE R0 [R1]
-  1216 - 0A0100000068         - MOVE 104 R1
-  1222 - 0441                 - MOVE [R1] R0
-  1224 - 3A0400000001         - SUB 1 R7
-  1230 - B801                 - MOVE R0 [R7]
-  1232 - 0A0100000067         - MOVE 103 R1
-  1238 - 0441                 - MOVE [R1] R0
-  1240 - 3A0400000001         - SUB 1 R7
-  1246 - B801                 - MOVE R0 [R7]
-  1248 - 020100000001         - MOVE 1 R0
-  1254 - 3A0400000001         - SUB 1 R7
-  1260 - B801                 - MOVE R0 [R7]
-  1262 - 15C1                 - MOVE [R7] R2
-  1264 - 3A0200000001         - ADD 1 R7
-  1270 - 0DC1                 - MOVE [R7] R1
-  1272 - 3A0200000001         - ADD 1 R7
-  1278 - 0882                 - ADD R2 R1
-  1280 - 0041                 - MOVE R1 R0
-  1282 - 3A0400000001         - SUB 1 R7
-  1288 - B801                 - MOVE R0 [R7]
-  1290 - 15C1                 - MOVE [R7] R2
-  1292 - 3A0200000001         - ADD 1 R7
-  1298 - 020100000000         - MOVE 0 R0
-  1304 - 0082                 - ADD R2 R0
-  1306 - 3A0400000001         - SUB 1 R7
-  1312 - B801                 - MOVE R0 [R7]
-  1314 - 0DC1                 - MOVE [R7] R1
-  1316 - 3A0200000001         - ADD 1 R7
-  1322 - 05C1                 - MOVE [R7] R0
-  1324 - 3A0200000001         - ADD 1 R7
-  1330 - 8801                 - MOVE R0 [R1]
-  1332 - 400F0000053A         - JMP 1338
-  1338 - 0A0100000067         - MOVE 103 R1
-  1344 - 0441                 - MOVE [R1] R0
-  1346 - 3A0400000001         - SUB 1 R7
-  1352 - B801                 - MOVE R0 [R7]
-  1354 - 020100000001         - MOVE 1 R0
-  1360 - 3A0400000001         - SUB 1 R7
-  1366 - B801                 - MOVE R0 [R7]
-  1368 - 15C1                 - MOVE [R7] R2
-  1370 - 3A0200000001         - ADD 1 R7
-  1376 - 0DC1                 - MOVE [R7] R1
-  1378 - 3A0200000001         - ADD 1 R7
-  1384 - 0882                 - ADD R2 R1
-  1386 - 0041                 - MOVE R1 R0
-  1388 - 3A0400000001         - SUB 1 R7
-  1394 - B801                 - MOVE R0 [R7]
-  1396 - 05C1                 - MOVE [R7] R0
-  1398 - 3A0200000001         - ADD 1 R7
-  1404 - 0A0100000067         - MOVE 103 R1
-  1410 - 8801                 - MOVE R0 [R1]
-  1412 - 400F00000228         - JMP 552
-  1418 - 0A0100000066         - MOVE 102 R1
-  1424 - 0441                 - MOVE [R1] R0
-  1426 - 3A0400000001         - SUB 1 R7
-  1432 - B801                 - MOVE R0 [R7]
-  1434 - 020100000001         - MOVE 1 R0
-  1440 - 3A0400000001         - SUB 1 R7
-  1446 - B801                 - MOVE R0 [R7]
-  1448 - 15C1                 - MOVE [R7] R2
-  1450 - 3A0200000001         - ADD 1 R7
-  1456 - 0DC1                 - MOVE [R7] R1
-  1458 - 3A0200000001         - ADD 1 R7
-  1464 - 0882                 - ADD R2 R1
-  1466 - 0041                 - MOVE R1 R0
-  1468 - 3A0400000001         - SUB 1 R7
-  1474 - B801                 - MOVE R0 [R7]
-  1476 - 05C1                 - MOVE [R7] R0
-  1478 - 3A0200000001         - ADD 1 R7
-  1484 - 0A0100000066         - MOVE 102 R1
-  1490 - 8801                 - MOVE R0 [R1]
-  1492 - 400F0000019C         - JMP 412
-  1498 - 020100000000         - MOVE 0 R0
-  1504 - 3A0400000001         - SUB 1 R7
-  1510 - B801                 - MOVE R0 [R7]
-  1512 - 05C1                 - MOVE [R7] R0
-  1514 - 3A0200000001         - ADD 1 R7
-  1520 - 0A0100000069         - MOVE 105 R1
-  1526 - 8801                 - MOVE R0 [R1]
-  1528 - 0A0100000069         - MOVE 105 R1
-  1534 - 0441                 - MOVE [R1] R0
-  1536 - 3A0400000001         - SUB 1 R7
-  1542 - B801                 - MOVE R0 [R7]
-  1544 - 0A0100000064         - MOVE 100 R1
-  1550 - 0441                 - MOVE [R1] R0
-  1552 - 3A0400000001         - SUB 1 R7
-  1558 - B801                 - MOVE R0 [R7]
-  1560 - 15C1                 - MOVE [R7] R2
-  1562 - 3A0200000001         - ADD 1 R7
-  1568 - 0DC1                 - MOVE [R7] R1
-  1570 - 3A0200000001         - ADD 1 R7
-  1576 - 088C                 - CMP R2 R1
-  1578 - 401500000644         - BLT 1604
-  1584 - 020100000000         - MOVE 0 R0
-  1590 - 3A0400000001         - SUB 1 R7
-  1596 - B801                 - MOVE R0 [R7]
-  1598 - 400F00000652         - JMP 1618
-  1604 - 020100000001         - MOVE 1 R0
-  1610 - 3A0400000001         - SUB 1 R7
-  1616 - B801                 - MOVE R0 [R7]
-  1618 - 05C1                 - MOVE [R7] R0
-  1620 - 3A0200000001         - ADD 1 R7
-  1626 - 020C00000000         - CMP 0 R0
-  1632 - 401000000724         - BEQ 1828
-  1638 - 0A0100000069         - MOVE 105 R1
-  1644 - 0441                 - MOVE [R1] R0
-  1646 - 3A0400000001         - SUB 1 R7
-  1652 - B801                 - MOVE R0 [R7]
-  1654 - 15C1                 - MOVE [R7] R2
-  1656 - 3A0200000001         - ADD 1 R7
-  1662 - 020100000000         - MOVE 0 R0
-  1668 - 0082                 - ADD R2 R0
-  1670 - 3A0400000001         - SUB 1 R7
-  1676 - B801                 - MOVE R0 [R7]
-  1678 - 0DC1                 - MOVE [R7] R1
-  1680 - 3A0200000001         - ADD 1 R7
-  1686 - 0441                 - MOVE [R1] R0
-  1688 - 3A0400000001         - SUB 1 R7
-  1694 - B801                 - MOVE R0 [R7]
-  1696 - 05C1                 - MOVE [R7] R0
-  1698 - 3A0200000001         - ADD 1 R7
-  1704 - 400E00000002         - OUT R0 2
-  1710 - 02010000006A         - MOVE 106 R0
-  1716 - 0C01                 - MOVE [R0] R1
-  1718 - 0A0C00000000         - CMP 0 R1
-  1724 - 4010000006D4         - BEQ 1748
-  1730 - 404E00000003         - OUT R1 3
-  1736 - 020200000001         - ADD 1 R0
-  1742 - 400F000006B4         - JMP 1716
-  1748 - 0A0100000069         - MOVE 105 R1
-  1754 - 0441                 - MOVE [R1] R0
-  1756 - 3A0400000001         - SUB 1 R7
-  1762 - B801                 - MOVE R0 [R7]
-  1764 - 020100000001         - MOVE 1 R0
-  1770 - 3A0400000001         - SUB 1 R7
-  1776 - B801                 - MOVE R0 [R7]
-  1778 - 15C1                 - MOVE [R7] R2
-  1780 - 3A0200000001         - ADD 1 R7
-  1786 - 0DC1                 - MOVE [R7] R1
-  1788 - 3A0200000001         - ADD 1 R7
-  1794 - 0882                 - ADD R2 R1
-  1796 - 0041                 - MOVE R1 R0
-  1798 - 3A0400000001         - SUB 1 R7
-  1804 - B801                 - MOVE R0 [R7]
-  1806 - 05C1                 - MOVE [R7] R0
-  1808 - 3A0200000001         - ADD 1 R7
-  1814 - 0A0100000069         - MOVE 105 R1
-  1820 - 8801                 - MOVE R0 [R1]
-  1822 - 400F000005F8         - JMP 1528
-  1828 - 0000                 - HALT
+   42 - 020D00000000         - IN 0 R0
+   48 - 8801                 - MOVE R0 [R1]
+   50 - 020100000000         - MOVE 0 R0
+   56 - 3A0400000001         - SUB 1 R7
+   62 - B801                 - MOVE R0 [R7]
+   64 - 05C1                 - MOVE [R7] R0
+   66 - 3A0200000001         - ADD 1 R7
+   72 - 0A0100000065         - MOVE 101 R1
+   78 - 8801                 - MOVE R0 [R1]
+   80 - 0A0100000065         - MOVE 101 R1
+   86 - 0441                 - MOVE [R1] R0
+   88 - 3A0400000001         - SUB 1 R7
+   94 - B801                 - MOVE R0 [R7]
+   96 - 0A0100000064         - MOVE 100 R1
+  102 - 0441                 - MOVE [R1] R0
+  104 - 3A0400000001         - SUB 1 R7
+  110 - B801                 - MOVE R0 [R7]
+  112 - 15C1                 - MOVE [R7] R2
+  114 - 3A0200000001         - ADD 1 R7
+  120 - 0DC1                 - MOVE [R7] R1
+  122 - 3A0200000001         - ADD 1 R7
+  128 - 088C                 - CMP R2 R1
+  130 - 40150000009C         - BLT 156
+  136 - 020100000000         - MOVE 0 R0
+  142 - 3A0400000001         - SUB 1 R7
+  148 - B801                 - MOVE R0 [R7]
+  150 - 400F000000AA         - JMP 170
+  156 - 020100000001         - MOVE 1 R0
+  162 - 3A0400000001         - SUB 1 R7
+  168 - B801                 - MOVE R0 [R7]
+  170 - 05C1                 - MOVE [R7] R0
+  172 - 3A0200000001         - ADD 1 R7
+  178 - 020C00000000         - CMP 0 R0
+  184 - 401000000146         - BEQ 326
+  190 - 0A0100000065         - MOVE 101 R1
+  196 - 0441                 - MOVE [R1] R0
+  198 - 3A0400000001         - SUB 1 R7
+  204 - B801                 - MOVE R0 [R7]
+  206 - 15C1                 - MOVE [R7] R2
+  208 - 3A0200000001         - ADD 1 R7
+  214 - 020100000000         - MOVE 0 R0
+  220 - 0082                 - ADD R2 R0
+  222 - 3A0400000001         - SUB 1 R7
+  228 - B801                 - MOVE R0 [R7]
+  230 - 0DC1                 - MOVE [R7] R1
+  232 - 3A0200000001         - ADD 1 R7
+  238 - 020D00000000         - IN 0 R0
+  244 - 8801                 - MOVE R0 [R1]
+  246 - 0A0100000065         - MOVE 101 R1
+  252 - 0441                 - MOVE [R1] R0
+  254 - 3A0400000001         - SUB 1 R7
+  260 - B801                 - MOVE R0 [R7]
+  262 - 020100000001         - MOVE 1 R0
+  268 - 3A0400000001         - SUB 1 R7
+  274 - B801                 - MOVE R0 [R7]
+  276 - 15C1                 - MOVE [R7] R2
+  278 - 3A0200000001         - ADD 1 R7
+  284 - 0DC1                 - MOVE [R7] R1
+  286 - 3A0200000001         - ADD 1 R7
+  292 - 0882                 - ADD R2 R1
+  294 - 0041                 - MOVE R1 R0
+  296 - 3A0400000001         - SUB 1 R7
+  302 - B801                 - MOVE R0 [R7]
+  304 - 05C1                 - MOVE [R7] R0
+  306 - 3A0200000001         - ADD 1 R7
+  312 - 0A0100000065         - MOVE 101 R1
+  318 - 8801                 - MOVE R0 [R1]
+  320 - 400F00000050         - JMP 80
+  326 - 020100000000         - MOVE 0 R0
+  332 - 3A0400000001         - SUB 1 R7
+  338 - B801                 - MOVE R0 [R7]
+  340 - 05C1                 - MOVE [R7] R0
+  342 - 3A0200000001         - ADD 1 R7
+  348 - 0A0100000066         - MOVE 102 R1
+  354 - 8801                 - MOVE R0 [R1]
+  356 - 020100000000         - MOVE 0 R0
+  362 - 3A0400000001         - SUB 1 R7
+  368 - B801                 - MOVE R0 [R7]
+  370 - 05C1                 - MOVE [R7] R0
+  372 - 3A0200000001         - ADD 1 R7
+  378 - 0A0100000067         - MOVE 103 R1
+  384 - 8801                 - MOVE R0 [R1]
+  386 - 020100000000         - MOVE 0 R0
+  392 - 3A0400000001         - SUB 1 R7
+  398 - B801                 - MOVE R0 [R7]
+  400 - 05C1                 - MOVE [R7] R0
+  402 - 3A0200000001         - ADD 1 R7
+  408 - 0A0100000068         - MOVE 104 R1
+  414 - 8801                 - MOVE R0 [R1]
+  416 - 0A0100000066         - MOVE 102 R1
+  422 - 0441                 - MOVE [R1] R0
+  424 - 3A0400000001         - SUB 1 R7
+  430 - B801                 - MOVE R0 [R7]
+  432 - 0A0100000064         - MOVE 100 R1
+  438 - 0441                 - MOVE [R1] R0
+  440 - 3A0400000001         - SUB 1 R7
+  446 - B801                 - MOVE R0 [R7]
+  448 - 15C1                 - MOVE [R7] R2
+  450 - 3A0200000001         - ADD 1 R7
+  456 - 0DC1                 - MOVE [R7] R1
+  458 - 3A0200000001         - ADD 1 R7
+  464 - 088C                 - CMP R2 R1
+  466 - 4015000001EC         - BLT 492
+  472 - 020100000000         - MOVE 0 R0
+  478 - 3A0400000001         - SUB 1 R7
+  484 - B801                 - MOVE R0 [R7]
+  486 - 400F000001FA         - JMP 506
+  492 - 020100000001         - MOVE 1 R0
+  498 - 3A0400000001         - SUB 1 R7
+  504 - B801                 - MOVE R0 [R7]
+  506 - 05C1                 - MOVE [R7] R0
+  508 - 3A0200000001         - ADD 1 R7
+  514 - 020C00000000         - CMP 0 R0
+  520 - 4010000005DE         - BEQ 1502
+  526 - 020100000000         - MOVE 0 R0
+  532 - 3A0400000001         - SUB 1 R7
+  538 - B801                 - MOVE R0 [R7]
+  540 - 05C1                 - MOVE [R7] R0
+  542 - 3A0200000001         - ADD 1 R7
+  548 - 0A0100000067         - MOVE 103 R1
+  554 - 8801                 - MOVE R0 [R1]
+  556 - 0A0100000067         - MOVE 103 R1
+  562 - 0441                 - MOVE [R1] R0
+  564 - 3A0400000001         - SUB 1 R7
+  570 - B801                 - MOVE R0 [R7]
+  572 - 0A0100000064         - MOVE 100 R1
+  578 - 0441                 - MOVE [R1] R0
+  580 - 3A0400000001         - SUB 1 R7
+  586 - B801                 - MOVE R0 [R7]
+  588 - 0A0100000066         - MOVE 102 R1
+  594 - 0441                 - MOVE [R1] R0
+  596 - 3A0400000001         - SUB 1 R7
+  602 - B801                 - MOVE R0 [R7]
+  604 - 15C1                 - MOVE [R7] R2
+  606 - 3A0200000001         - ADD 1 R7
+  612 - 0DC1                 - MOVE [R7] R1
+  614 - 3A0200000001         - ADD 1 R7
+  620 - 0884                 - SUB R2 R1
+  622 - 0041                 - MOVE R1 R0
+  624 - 3A0400000001         - SUB 1 R7
+  630 - B801                 - MOVE R0 [R7]
+  632 - 020100000001         - MOVE 1 R0
+  638 - 3A0400000001         - SUB 1 R7
+  644 - B801                 - MOVE R0 [R7]
+  646 - 15C1                 - MOVE [R7] R2
+  648 - 3A0200000001         - ADD 1 R7
+  654 - 0DC1                 - MOVE [R7] R1
+  656 - 3A0200000001         - ADD 1 R7
+  662 - 0884                 - SUB R2 R1
+  664 - 0041                 - MOVE R1 R0
+  666 - 3A0400000001         - SUB 1 R7
+  672 - B801                 - MOVE R0 [R7]
+  674 - 15C1                 - MOVE [R7] R2
+  676 - 3A0200000001         - ADD 1 R7
+  682 - 0DC1                 - MOVE [R7] R1
+  684 - 3A0200000001         - ADD 1 R7
+  690 - 088C                 - CMP R2 R1
+  692 - 4015000002CE         - BLT 718
+  698 - 020100000000         - MOVE 0 R0
+  704 - 3A0400000001         - SUB 1 R7
+  710 - B801                 - MOVE R0 [R7]
+  712 - 400F000002DC         - JMP 732
+  718 - 020100000001         - MOVE 1 R0
+  724 - 3A0400000001         - SUB 1 R7
+  730 - B801                 - MOVE R0 [R7]
+  732 - 05C1                 - MOVE [R7] R0
+  734 - 3A0200000001         - ADD 1 R7
+  740 - 020C00000000         - CMP 0 R0
+  746 - 40100000058E         - BEQ 1422
+  752 - 0A0100000067         - MOVE 103 R1
+  758 - 0441                 - MOVE [R1] R0
+  760 - 3A0400000001         - SUB 1 R7
+  766 - B801                 - MOVE R0 [R7]
+  768 - 15C1                 - MOVE [R7] R2
+  770 - 3A0200000001         - ADD 1 R7
+  776 - 020100000000         - MOVE 0 R0
+  782 - 0082                 - ADD R2 R0
+  784 - 3A0400000001         - SUB 1 R7
+  790 - B801                 - MOVE R0 [R7]
+  792 - 0DC1                 - MOVE [R7] R1
+  794 - 3A0200000001         - ADD 1 R7
+  800 - 0441                 - MOVE [R1] R0
+  802 - 3A0400000001         - SUB 1 R7
+  808 - B801                 - MOVE R0 [R7]
+  810 - 0A0100000067         - MOVE 103 R1
+  816 - 0441                 - MOVE [R1] R0
+  818 - 3A0400000001         - SUB 1 R7
+  824 - B801                 - MOVE R0 [R7]
+  826 - 020100000001         - MOVE 1 R0
+  832 - 3A0400000001         - SUB 1 R7
+  838 - B801                 - MOVE R0 [R7]
+  840 - 15C1                 - MOVE [R7] R2
+  842 - 3A0200000001         - ADD 1 R7
+  848 - 0DC1                 - MOVE [R7] R1
+  850 - 3A0200000001         - ADD 1 R7
+  856 - 0882                 - ADD R2 R1
+  858 - 0041                 - MOVE R1 R0
+  860 - 3A0400000001         - SUB 1 R7
+  866 - B801                 - MOVE R0 [R7]
+  868 - 15C1                 - MOVE [R7] R2
+  870 - 3A0200000001         - ADD 1 R7
+  876 - 020100000000         - MOVE 0 R0
+  882 - 0082                 - ADD R2 R0
+  884 - 3A0400000001         - SUB 1 R7
+  890 - B801                 - MOVE R0 [R7]
+  892 - 0DC1                 - MOVE [R7] R1
+  894 - 3A0200000001         - ADD 1 R7
+  900 - 0441                 - MOVE [R1] R0
+  902 - 3A0400000001         - SUB 1 R7
+  908 - B801                 - MOVE R0 [R7]
+  910 - 15C1                 - MOVE [R7] R2
+  912 - 3A0200000001         - ADD 1 R7
+  918 - 0DC1                 - MOVE [R7] R1
+  920 - 3A0200000001         - ADD 1 R7
+  926 - 088C                 - CMP R2 R1
+  928 - 4013000003BA         - BGT 954
+  934 - 020100000000         - MOVE 0 R0
+  940 - 3A0400000001         - SUB 1 R7
+  946 - B801                 - MOVE R0 [R7]
+  948 - 400F000003C8         - JMP 968
+  954 - 020100000001         - MOVE 1 R0
+  960 - 3A0400000001         - SUB 1 R7
+  966 - B801                 - MOVE R0 [R7]
+  968 - 05C1                 - MOVE [R7] R0
+  970 - 3A0200000001         - ADD 1 R7
+  976 - 020C00000000         - CMP 0 R0
+  982 - 40100000053E         - BEQ 1342
+  988 - 0A0100000067         - MOVE 103 R1
+  994 - 0441                 - MOVE [R1] R0
+  996 - 3A0400000001         - SUB 1 R7
+  1002 - B801                 - MOVE R0 [R7]
+  1004 - 15C1                 - MOVE [R7] R2
+  1006 - 3A0200000001         - ADD 1 R7
+  1012 - 020100000000         - MOVE 0 R0
+  1018 - 0082                 - ADD R2 R0
+  1020 - 3A0400000001         - SUB 1 R7
+  1026 - B801                 - MOVE R0 [R7]
+  1028 - 0DC1                 - MOVE [R7] R1
+  1030 - 3A0200000001         - ADD 1 R7
+  1036 - 0441                 - MOVE [R1] R0
+  1038 - 3A0400000001         - SUB 1 R7
+  1044 - B801                 - MOVE R0 [R7]
+  1046 - 05C1                 - MOVE [R7] R0
+  1048 - 3A0200000001         - ADD 1 R7
+  1054 - 0A0100000068         - MOVE 104 R1
+  1060 - 8801                 - MOVE R0 [R1]
+  1062 - 0A0100000067         - MOVE 103 R1
+  1068 - 0441                 - MOVE [R1] R0
+  1070 - 3A0400000001         - SUB 1 R7
+  1076 - B801                 - MOVE R0 [R7]
+  1078 - 020100000001         - MOVE 1 R0
+  1084 - 3A0400000001         - SUB 1 R7
+  1090 - B801                 - MOVE R0 [R7]
+  1092 - 15C1                 - MOVE [R7] R2
+  1094 - 3A0200000001         - ADD 1 R7
+  1100 - 0DC1                 - MOVE [R7] R1
+  1102 - 3A0200000001         - ADD 1 R7
+  1108 - 0882                 - ADD R2 R1
+  1110 - 0041                 - MOVE R1 R0
+  1112 - 3A0400000001         - SUB 1 R7
+  1118 - B801                 - MOVE R0 [R7]
+  1120 - 15C1                 - MOVE [R7] R2
+  1122 - 3A0200000001         - ADD 1 R7
+  1128 - 020100000000         - MOVE 0 R0
+  1134 - 0082                 - ADD R2 R0
+  1136 - 3A0400000001         - SUB 1 R7
+  1142 - B801                 - MOVE R0 [R7]
+  1144 - 0DC1                 - MOVE [R7] R1
+  1146 - 3A0200000001         - ADD 1 R7
+  1152 - 0441                 - MOVE [R1] R0
+  1154 - 3A0400000001         - SUB 1 R7
+  1160 - B801                 - MOVE R0 [R7]
+  1162 - 0A0100000067         - MOVE 103 R1
+  1168 - 0441                 - MOVE [R1] R0
+  1170 - 3A0400000001         - SUB 1 R7
+  1176 - B801                 - MOVE R0 [R7]
+  1178 - 15C1                 - MOVE [R7] R2
+  1180 - 3A0200000001         - ADD 1 R7
+  1186 - 020100000000         - MOVE 0 R0
+  1192 - 0082                 - ADD R2 R0
+  1194 - 3A0400000001         - SUB 1 R7
+  1200 - B801                 - MOVE R0 [R7]
+  1202 - 0DC1                 - MOVE [R7] R1
+  1204 - 3A0200000001         - ADD 1 R7
+  1210 - 05C1                 - MOVE [R7] R0
+  1212 - 3A0200000001         - ADD 1 R7
+  1218 - 8801                 - MOVE R0 [R1]
+  1220 - 0A0100000068         - MOVE 104 R1
+  1226 - 0441                 - MOVE [R1] R0
+  1228 - 3A0400000001         - SUB 1 R7
+  1234 - B801                 - MOVE R0 [R7]
+  1236 - 0A0100000067         - MOVE 103 R1
+  1242 - 0441                 - MOVE [R1] R0
+  1244 - 3A0400000001         - SUB 1 R7
+  1250 - B801                 - MOVE R0 [R7]
+  1252 - 020100000001         - MOVE 1 R0
+  1258 - 3A0400000001         - SUB 1 R7
+  1264 - B801                 - MOVE R0 [R7]
+  1266 - 15C1                 - MOVE [R7] R2
+  1268 - 3A0200000001         - ADD 1 R7
+  1274 - 0DC1                 - MOVE [R7] R1
+  1276 - 3A0200000001         - ADD 1 R7
+  1282 - 0882                 - ADD R2 R1
+  1284 - 0041                 - MOVE R1 R0
+  1286 - 3A0400000001         - SUB 1 R7
+  1292 - B801                 - MOVE R0 [R7]
+  1294 - 15C1                 - MOVE [R7] R2
+  1296 - 3A0200000001         - ADD 1 R7
+  1302 - 020100000000         - MOVE 0 R0
+  1308 - 0082                 - ADD R2 R0
+  1310 - 3A0400000001         - SUB 1 R7
+  1316 - B801                 - MOVE R0 [R7]
+  1318 - 0DC1                 - MOVE [R7] R1
+  1320 - 3A0200000001         - ADD 1 R7
+  1326 - 05C1                 - MOVE [R7] R0
+  1328 - 3A0200000001         - ADD 1 R7
+  1334 - 8801                 - MOVE R0 [R1]
+  1336 - 400F0000053E         - JMP 1342
+  1342 - 0A0100000067         - MOVE 103 R1
+  1348 - 0441                 - MOVE [R1] R0
+  1350 - 3A0400000001         - SUB 1 R7
+  1356 - B801                 - MOVE R0 [R7]
+  1358 - 020100000001         - MOVE 1 R0
+  1364 - 3A0400000001         - SUB 1 R7
+  1370 - B801                 - MOVE R0 [R7]
+  1372 - 15C1                 - MOVE [R7] R2
+  1374 - 3A0200000001         - ADD 1 R7
+  1380 - 0DC1                 - MOVE [R7] R1
+  1382 - 3A0200000001         - ADD 1 R7
+  1388 - 0882                 - ADD R2 R1
+  1390 - 0041                 - MOVE R1 R0
+  1392 - 3A0400000001         - SUB 1 R7
+  1398 - B801                 - MOVE R0 [R7]
+  1400 - 05C1                 - MOVE [R7] R0
+  1402 - 3A0200000001         - ADD 1 R7
+  1408 - 0A0100000067         - MOVE 103 R1
+  1414 - 8801                 - MOVE R0 [R1]
+  1416 - 400F0000022C         - JMP 556
+  1422 - 0A0100000066         - MOVE 102 R1
+  1428 - 0441                 - MOVE [R1] R0
+  1430 - 3A0400000001         - SUB 1 R7
+  1436 - B801                 - MOVE R0 [R7]
+  1438 - 020100000001         - MOVE 1 R0
+  1444 - 3A0400000001         - SUB 1 R7
+  1450 - B801                 - MOVE R0 [R7]
+  1452 - 15C1                 - MOVE [R7] R2
+  1454 - 3A0200000001         - ADD 1 R7
+  1460 - 0DC1                 - MOVE [R7] R1
+  1462 - 3A0200000001         - ADD 1 R7
+  1468 - 0882                 - ADD R2 R1
+  1470 - 0041                 - MOVE R1 R0
+  1472 - 3A0400000001         - SUB 1 R7
+  1478 - B801                 - MOVE R0 [R7]
+  1480 - 05C1                 - MOVE [R7] R0
+  1482 - 3A0200000001         - ADD 1 R7
+  1488 - 0A0100000066         - MOVE 102 R1
+  1494 - 8801                 - MOVE R0 [R1]
+  1496 - 400F000001A0         - JMP 416
+  1502 - 020100000000         - MOVE 0 R0
+  1508 - 3A0400000001         - SUB 1 R7
+  1514 - B801                 - MOVE R0 [R7]
+  1516 - 05C1                 - MOVE [R7] R0
+  1518 - 3A0200000001         - ADD 1 R7
+  1524 - 0A0100000069         - MOVE 105 R1
+  1530 - 8801                 - MOVE R0 [R1]
+  1532 - 0A0100000069         - MOVE 105 R1
+  1538 - 0441                 - MOVE [R1] R0
+  1540 - 3A0400000001         - SUB 1 R7
+  1546 - B801                 - MOVE R0 [R7]
+  1548 - 0A0100000064         - MOVE 100 R1
+  1554 - 0441                 - MOVE [R1] R0
+  1556 - 3A0400000001         - SUB 1 R7
+  1562 - B801                 - MOVE R0 [R7]
+  1564 - 15C1                 - MOVE [R7] R2
+  1566 - 3A0200000001         - ADD 1 R7
+  1572 - 0DC1                 - MOVE [R7] R1
+  1574 - 3A0200000001         - ADD 1 R7
+  1580 - 088C                 - CMP R2 R1
+  1582 - 401500000648         - BLT 1608
+  1588 - 020100000000         - MOVE 0 R0
+  1594 - 3A0400000001         - SUB 1 R7
+  1600 - B801                 - MOVE R0 [R7]
+  1602 - 400F00000656         - JMP 1622
+  1608 - 020100000001         - MOVE 1 R0
+  1614 - 3A0400000001         - SUB 1 R7
+  1620 - B801                 - MOVE R0 [R7]
+  1622 - 05C1                 - MOVE [R7] R0
+  1624 - 3A0200000001         - ADD 1 R7
+  1630 - 020C00000000         - CMP 0 R0
+  1636 - 401000000728         - BEQ 1832
+  1642 - 0A0100000069         - MOVE 105 R1
+  1648 - 0441                 - MOVE [R1] R0
+  1650 - 3A0400000001         - SUB 1 R7
+  1656 - B801                 - MOVE R0 [R7]
+  1658 - 15C1                 - MOVE [R7] R2
+  1660 - 3A0200000001         - ADD 1 R7
+  1666 - 020100000000         - MOVE 0 R0
+  1672 - 0082                 - ADD R2 R0
+  1674 - 3A0400000001         - SUB 1 R7
+  1680 - B801                 - MOVE R0 [R7]
+  1682 - 0DC1                 - MOVE [R7] R1
+  1684 - 3A0200000001         - ADD 1 R7
+  1690 - 0441                 - MOVE [R1] R0
+  1692 - 3A0400000001         - SUB 1 R7
+  1698 - B801                 - MOVE R0 [R7]
+  1700 - 05C1                 - MOVE [R7] R0
+  1702 - 3A0200000001         - ADD 1 R7
+  1708 - 400E00000002         - OUT R0 2
+  1714 - 02010000006A         - MOVE 106 R0
+  1720 - 0C01                 - MOVE [R0] R1
+  1722 - 0A0C00000000         - CMP 0 R1
+  1728 - 4010000006D8         - BEQ 1752
+  1734 - 404E00000003         - OUT R1 3
+  1740 - 020200000001         - ADD 1 R0
+  1746 - 400F000006B8         - JMP 1720
+  1752 - 0A0100000069         - MOVE 105 R1
+  1758 - 0441                 - MOVE [R1] R0
+  1760 - 3A0400000001         - SUB 1 R7
+  1766 - B801                 - MOVE R0 [R7]
+  1768 - 020100000001         - MOVE 1 R0
+  1774 - 3A0400000001         - SUB 1 R7
+  1780 - B801                 - MOVE R0 [R7]
+  1782 - 15C1                 - MOVE [R7] R2
+  1784 - 3A0200000001         - ADD 1 R7
+  1790 - 0DC1                 - MOVE [R7] R1
+  1792 - 3A0200000001         - ADD 1 R7
+  1798 - 0882                 - ADD R2 R1
+  1800 - 0041                 - MOVE R1 R0
+  1802 - 3A0400000001         - SUB 1 R7
+  1808 - B801                 - MOVE R0 [R7]
+  1810 - 05C1                 - MOVE [R7] R0
+  1812 - 3A0200000001         - ADD 1 R7
+  1818 - 0A0100000069         - MOVE 105 R1
+  1824 - 8801                 - MOVE R0 [R1]
+  1826 - 400F000005FC         - JMP 1532
+  1832 - 0000                 - HALT
 
 out_data_hex: |2-
     0 : 0

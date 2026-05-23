@@ -1,6 +1,5 @@
-array buffer = {100};
+string s = {2};
 while (1) {
-    read(buffer);
-    print(buffer);
-    print("\n");
+    read(s[0]);
+    print(s[0]);
 }

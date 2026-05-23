@@ -1,6 +1,7 @@
 from src.isa.isa import AddrMode, Instruction, Opcode, Register
 from src.translator.ast_nodes import (
     Ast,
+    AstArray,
     AstArrayReference,
     AstAssign,
     AstBinaryOperation,
@@ -138,7 +139,6 @@ class CodeGenerator(NodeVisitor):
             self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R0, AddrMode.INDIRECT, Register.R1)
             )
-
         elif symbol.type_ == SymbolType.LONG:
             symbol_address = len(self.data)
             self.data += [0, 0]
@@ -160,8 +160,14 @@ class CodeGenerator(NodeVisitor):
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.INDIRECT_OFFSET, Register.R0, dst_imm=1)
             )
         elif symbol.type_ == SymbolType.STRING:
-            self.emit_string_literal(node.value)
-            symbol.address = node.value.address
+            if isinstance(node.value, AstString):
+                self.emit_string_literal(node.value)
+                symbol.address = node.value.address
+            elif isinstance(node.value, AstArray):
+                node.value.address = len(self.data)
+                self.data += [0] * node.value.size
+                symbol.address = node.value.address
+
         elif symbol.type_ == SymbolType.ARRAY:
             node.value.address = len(self.data)
             self.data += [0] * node.value.size
@@ -292,17 +298,18 @@ class CodeGenerator(NodeVisitor):
                 )
             )
 
-        if node.type_ == SymbolType.INT:
-            self.instructions.append(
-                Instruction(
-                    Opcode.IN, AddrMode.IMMEDIATE, Register.R0, AddrMode.INDIRECT, Register.R1, src_imm=node.port
-                )
-            )
-        else:
+        if node.port == 1 and isinstance(node.variable, AstVariableReference):
             self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.DIRECT, Register.R0)
             )
             self.emit_read_cstr_loop(node.port)
+        else:
+            self.instructions.append(
+                Instruction(Opcode.IN, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=node.port)
+            )
+            self.instructions.append(
+                Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R0, AddrMode.INDIRECT, Register.R1)
+            )
 
     def visit_ast_number(self, node: AstNumber) -> None:
         """Положить число на стек"""

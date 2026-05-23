@@ -29,7 +29,6 @@ from src.util.exceptions import (
     NameNotDeclaredError,
     NotAnArrayError,
     TypeMismatchError,
-    UnsupportedTypeError,
 )
 
 
@@ -153,40 +152,26 @@ class SemanticAnalyzer(NodeVisitor):
 
     def visit_ast_print(self, node: AstPrint) -> None:
         self.visit(node.value)
-
-        if isinstance(node.value, AstString):
+        symbol = None
+        if hasattr(node.value, "name"):
+            symbol = self.symbol_table.lookup(node.value.name)
+        if isinstance(node.value, AstString) or (symbol and symbol.type_ == SymbolType.STRING):
             node.port = 3
             node.type_ = SymbolType.STRING
-        elif isinstance(node.value, AstVariableReference):
-            symbol = self.symbol_table.lookup(node.value.name)
-            if symbol.type_ in (SymbolType.STRING, SymbolType.ARRAY):
-                node.port = 3
-                node.type_ = symbol.type_
-            else:
-                node.port = 2
-                node.type_ = SymbolType.INT
         else:
             node.port = 2
             node.type_ = SymbolType.INT
-            self.resolve_expression_type(node.value, SymbolType.INT)
 
     def visit_ast_read(self, node: AstRead):
         symbol = self.symbol_table.lookup(node.variable.name)
         if symbol is None:
             raise NameNotDeclaredError(node.variable.name)
-
-        if isinstance(node.variable, AstVariableReference):
-            if symbol.type_ in (SymbolType.STRING, SymbolType.ARRAY):
-                node.port = 1
-                node.type_ = symbol.type_
-            elif symbol.type_ == SymbolType.INT:
-                node.port = 0
-                node.type_ = SymbolType.INT
-            else:
-                raise UnsupportedTypeError(symbol.type_)
+        if symbol.type_ == SymbolType.STRING:
+            node.port = 1
         else:
             node.port = 0
-            node.type_ = SymbolType.INT
+
+        if not isinstance(node.variable, AstVariableReference):
             self.visit(node.variable)
 
     def resolve_expression_type(self, node: Ast, expected: SymbolType):

@@ -45,7 +45,7 @@ class Cache:
             logger.debug("CACHE HIT write addr=%d value=%d", addr, value_)
             return CACHE_HIT_TICKS
         self.misses += 1
-        logger.debug("CACHE MISS write addr=%d value=%d waiting %d ticks", addr, value_)
+        logger.debug("CACHE MISS write addr=%d value=%d waiting 10 ticks", addr, value_)
 
         self.load(addr, value_)
         return CACHE_MISS_TICKS

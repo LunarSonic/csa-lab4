@@ -1,5 +1,5 @@
+from dataclasses import dataclass
 from enum import IntEnum
-from typing import Any
 
 
 class Signal(IntEnum):
@@ -13,236 +13,274 @@ class Signal(IntEnum):
     IO_WRITE = 4
 
     WB_FROM_ALU = 5
-    WB_FROM_MEM = 6
 
-    LATCH_TMP2_REG = 7
-    LATCH_TMP2_MEM = 8
-    LATCH_TMP2_IO = 9
-    LATCH_TMP2_IMM = 10
+    LATCH_TMP2_REG = 6
+    LATCH_TMP2_MEM = 7
+    LATCH_TMP2_IO = 8
+    LATCH_TMP2_IMM = 9
 
-    LATCH_TMP1_REG = 11
-    LATCH_TMP1_MEM = 12
-    LATCH_TMP1_IMM = 13
+    LATCH_TMP1_REG = 10
+    LATCH_TMP1_MEM = 11
+    LATCH_TMP1_IMM = 12
 
-    OP_ADD = 14
-    OP_ADC = 15
-    OP_SUB = 16
-    OP_MUL = 17
-    OP_DIV = 18
-    OP_REM = 19
-    OP_NEG = 20
-    OP_AND = 21
-    OP_OR = 22
-    OP_NOT = 23
-    OP_PASS_TMP1 = 24
-    OP_PASS_TMP2 = 25
-    SET_AR_SRC = 26
-    SET_AR_DST = 27
-    SET_AR_SRC_OFF = 28
-    SET_AR_DST_OFF = 29
+    OP_ADD = 13
+    OP_ADC = 14
+    OP_SUB = 15
+    OP_MUL = 16
+    OP_DIV = 17
+    OP_REM = 18
+    OP_NEG = 19
+    OP_AND = 20
+    OP_OR = 21
+    OP_NOT = 22
+    OP_PASS_TMP1 = 23
+    OP_PASS_TMP2 = 24
+    SET_AR_SRC = 25
+    SET_AR_DST = 26
+    SET_AR_SRC_OFF = 27
+    SET_AR_DST_OFF = 28
 
-    COND_TRUE = 30
-    COND_EQUAL = 31
-    COND_NOT_EQUAL = 32
-    COND_GREATER = 33
-    COND_GREATER_EQUAL = 34
-    COND_LESS = 35
-    COND_LESS_EQUAL = 36
+    COND_TRUE = 29
+    COND_EQUAL = 30
+    COND_NOT_EQUAL = 31
+    COND_GREATER = 32
+    COND_GREATER_EQUAL = 33
+    COND_LESS = 34
+    COND_LESS_EQUAL = 35
 
-    PC_ADD_2 = 37
-    PC_ADD_6 = 38
-    PC_ADD_10 = 39
-    PC_BRANCH = 40
-
-    LATCH_IR = 41
-
-    MPC_NEXT = 42
-    MPC_ZERO = 43
-    MPC_DISPATCH_OP = 44
-    MPC_DISPATCH_SRC = 45
-    MPC_DISPATCH_DST = 46
-    MPC_DISPATCH_WB = 47
+    PC_BRANCH = 36
+    LATCH_IR = 37
+    MPC_DECODE = 38
 
 
-def mc(*signals: Signal) -> frozenset[Any]:
-    return frozenset[Any](signals)
+@dataclass(frozen=True)
+class MicroInstruction:
+    signals: frozenset[Signal]
+    next_addr: int
 
 
-# Fetch
-ADDR_FETCH_0 = 0
-ADDR_FETCH_1 = 1
+def mi(signals: set[Signal], next_addr: int = 0) -> MicroInstruction:
+    return MicroInstruction(signals=frozenset(signals), next_addr=next_addr)
 
-# Fetch SRC
-ADDR_SRC_DIRECT = 2
-ADDR_SRC_IMMEDIATE = 3
-ADDR_SRC_INDIRECT = 5
-ADDR_SRC_INDIRECT_OFFSET = 7
 
-# Fetch DST
-ADDR_DST_DIRECT = 10
-ADDR_DST_IMMEDIATE = 11
-ADDR_DST_INDIRECT = 13
-ADDR_DST_INDIRECT_OFFSET = 15
-
-# WB по dst_mode
-ADDR_WB_DIRECT = 17
-ADDR_WB_INDIRECT = 18
-ADDR_WB_INDIRECT_OFFSET = 19
-
-ADDR_HALT = 20
-ADDR_MOVE = 21
-ADDR_ADD = 22
-ADDR_ADC = 23
-ADDR_SUB = 24
-ADDR_MUL = 25
-ADDR_DIV = 26
-ADDR_REM = 27
-ADDR_NEG = 28
-ADDR_AND = 29
-ADDR_OR = 30
-ADDR_NOT = 31
-ADDR_CMP = 32
-ADDR_IN = 33
-ADDR_OUT = 35
-ADDR_JMP = 37
-ADDR_BEQ = 38
-ADDR_BNE = 39
-ADDR_BGE = 40
-ADDR_BGT = 41
-ADDR_BLE = 42
-ADDR_BLT = 43
-
-DISPATCH_OPCODE: dict[int, int] = {
-    0: ADDR_HALT,
-    1: ADDR_MOVE,
-    2: ADDR_ADD,
-    3: ADDR_ADC,
-    4: ADDR_SUB,
-    5: ADDR_MUL,
-    6: ADDR_DIV,
-    7: ADDR_REM,
-    8: ADDR_NEG,
-    9: ADDR_AND,
-    10: ADDR_OR,
-    11: ADDR_NOT,
-    12: ADDR_CMP,
-    13: ADDR_IN,
-    14: ADDR_OUT,
-    15: ADDR_JMP,
-    16: ADDR_BEQ,
-    17: ADDR_BNE,
-    18: ADDR_BGE,
-    19: ADDR_BGT,
-    20: ADDR_BLE,
-    21: ADDR_BLT,
+DISPATCH_OPCODE_SRC_DST = {
+    (0, 0, 0): 80,  # HALT
+    # MOVE (opcode=1)
+    (1, 1, 0): 1,  # MOVE imm, reg         [1-2]
+    (1, 0, 0): 3,  # MOVE reg, reg         [3-4]
+    (1, 0, 2): 5,  # MOVE reg, [reg]       [5-7]
+    (1, 2, 0): 8,  # MOVE [reg], reg       [8-10]
+    (1, 0, 3): 11,  # MOVE reg, [reg+off]  [11-13]
+    (1, 1, 2): 14,  # MOVE imm, [reg]      [14-16]
+    (1, 3, 0): 17,  # MOVE [reg+off], reg  [17-19]
+    # ADD (opcode=2)
+    (2, 1, 0): 20,  # ADD imm, reg   [20-22]
+    (2, 0, 0): 23,  # ADD reg, reg   [23-25]
+    # ADC (opcode=3)
+    (3, 1, 0): 26,  # ADC imm, reg   [26-28]
+    (3, 0, 0): 29,  # ADC reg, reg   [29-31]
+    # SUB (opcode=4)
+    (4, 1, 0): 32,  # SUB imm, reg   [32-34]
+    (4, 0, 0): 35,  # SUB reg, reg   [35-37]
+    # MUL (opcode=5)
+    (5, 1, 0): 38,  # MUL imm, reg   [38-40]
+    (5, 0, 0): 41,  # MUL reg, reg   [41-43]
+    # DIV (opcode=6)
+    (6, 0, 0): 44,  # DIV reg, reg   [44-46]
+    # REM (opcode=7)
+    (7, 0, 0): 47,  # REM reg, reg   [47-49]
+    (7, 1, 0): 50,  # REM imm, reg   [50-52]
+    # NEG (opcode=8)
+    (8, 0, 0): 53,  # NEG reg        [53-54]
+    # AND (opcode=9)
+    (9, 0, 0): 55,  # AND reg, reg   [55-57]
+    # OR (opcode=10)
+    (10, 0, 0): 58,  # OR reg, reg   [58-60]
+    # NOT (opcode=11)
+    (11, 0, 0): 61,  # NOT reg       [61-62]
+    # CMP (opcode=12)
+    (12, 1, 0): 63,  # CMP imm, reg  [63-65]
+    (12, 0, 0): 66,  # CMP reg, reg  [66-68]
+    # IN (opcode=13)
+    (13, 1, 0): 69,  # IN port, reg  [69-70]
+    # OUT (opcode=14)
+    (14, 0, 1): 71,  # OUT reg, port [71-72]
+    # Условные переходы (15..21)
+    (15, 0, 1): 73,  # JMP imm
+    (16, 0, 1): 74,  # BEQ imm
+    (17, 0, 1): 75,  # BNE imm
+    (18, 0, 1): 76,  # BGE imm
+    (19, 0, 1): 77,  # BGT imm
+    (20, 0, 1): 78,  # BLE imm
+    (21, 0, 1): 79,  # BLT imm
 }
 
-DISPATCH_SRC_MODE = {0: 2, 1: 3, 2: 5, 3: 7}
-DISPATCH_DST_MODE = {0: 10, 1: 11, 2: 13, 3: 15}
-DISPATCH_WB_MODE = {0: 17, 1: 17, 2: 18, 3: 19}
+MICROPROGRAM: list[MicroInstruction] = [mi(set(), 0)] * 81
 
-empty_microcommand = mc()
-MICROPROGRAM: list[frozenset[Any]] = [empty_microcommand] * 64
+# [0] FETCH
+MICROPROGRAM[0] = mi({Signal.INSTRUCTION_MEMORY_LOAD, Signal.LATCH_IR, Signal.MPC_DECODE})
 
-# Fetch
-MICROPROGRAM[ADDR_FETCH_0] = mc(Signal.INSTRUCTION_MEMORY_LOAD, Signal.MPC_NEXT)
+# MOVE
+# [1-2] MOVE imm -> reg
+MICROPROGRAM[1] = mi({Signal.LATCH_TMP1_IMM}, next_addr=2)
+MICROPROGRAM[2] = mi({Signal.OP_PASS_TMP1, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_FETCH_1] = mc(Signal.LATCH_IR, Signal.MPC_DISPATCH_SRC)
+# [3-4] MOVE reg -> reg
+MICROPROGRAM[3] = mi({Signal.LATCH_TMP1_REG}, next_addr=4)
+MICROPROGRAM[4] = mi({Signal.OP_PASS_TMP1, Signal.WB_FROM_ALU}, next_addr=0)
 
-# Fetch_SRC
-MICROPROGRAM[ADDR_SRC_DIRECT] = mc(Signal.LATCH_TMP1_REG, Signal.MPC_DISPATCH_DST)
+# [5-7] MOVE reg -> [reg]
+MICROPROGRAM[5] = mi({Signal.SET_AR_DST}, next_addr=6)
+MICROPROGRAM[6] = mi({Signal.LATCH_TMP1_REG}, next_addr=7)
+MICROPROGRAM[7] = mi({Signal.OP_PASS_TMP1, Signal.DATA_MEMORY_STORE}, next_addr=0)
 
-MICROPROGRAM[ADDR_SRC_IMMEDIATE] = mc(Signal.LATCH_TMP1_IMM, Signal.MPC_NEXT)
+# [8-10] MOVE [reg] -> reg
+MICROPROGRAM[8] = mi({Signal.SET_AR_SRC}, next_addr=9)
+MICROPROGRAM[9] = mi({Signal.LATCH_TMP1_MEM}, next_addr=10)
+MICROPROGRAM[10] = mi({Signal.OP_PASS_TMP1, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_SRC_IMMEDIATE + 1] = mc(Signal.MPC_DISPATCH_DST)
+# [11-13] MOVE reg -> [reg+off]
+MICROPROGRAM[11] = mi({Signal.SET_AR_DST_OFF}, next_addr=12)
+MICROPROGRAM[12] = mi({Signal.LATCH_TMP1_REG}, next_addr=13)
+MICROPROGRAM[13] = mi({Signal.OP_PASS_TMP1, Signal.DATA_MEMORY_STORE}, next_addr=0)
 
-MICROPROGRAM[ADDR_SRC_INDIRECT] = mc(Signal.SET_AR_SRC, Signal.MPC_NEXT)
+# [14-16] MOVE imm -> [reg]
+MICROPROGRAM[14] = mi({Signal.SET_AR_DST}, next_addr=15)
+MICROPROGRAM[15] = mi({Signal.LATCH_TMP1_IMM}, next_addr=16)
+MICROPROGRAM[16] = mi({Signal.OP_PASS_TMP1, Signal.DATA_MEMORY_STORE}, next_addr=0)
 
-MICROPROGRAM[ADDR_SRC_INDIRECT + 1] = mc(Signal.LATCH_TMP1_MEM, Signal.MPC_DISPATCH_DST)
+# [17-19] MOVE [reg+off] -> reg
+MICROPROGRAM[17] = mi({Signal.SET_AR_SRC_OFF}, next_addr=18)
+MICROPROGRAM[18] = mi({Signal.LATCH_TMP1_MEM}, next_addr=19)
+MICROPROGRAM[19] = mi({Signal.OP_PASS_TMP1, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_SRC_INDIRECT_OFFSET] = mc(Signal.SET_AR_SRC_OFF, Signal.MPC_NEXT)
+# Арифметика с двумя операндами
+# [20-22] ADD imm, reg
+MICROPROGRAM[20] = mi({Signal.LATCH_TMP1_IMM}, next_addr=21)
+MICROPROGRAM[21] = mi({Signal.LATCH_TMP2_REG}, next_addr=22)
+MICROPROGRAM[22] = mi({Signal.OP_ADD, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_SRC_INDIRECT_OFFSET + 1] = mc(Signal.LATCH_TMP1_MEM, Signal.MPC_DISPATCH_DST)
+# [23-25] ADD reg, reg
+MICROPROGRAM[23] = mi({Signal.LATCH_TMP1_REG}, next_addr=24)
+MICROPROGRAM[24] = mi({Signal.LATCH_TMP2_REG}, next_addr=25)
+MICROPROGRAM[25] = mi({Signal.OP_ADD, Signal.WB_FROM_ALU}, next_addr=0)
 
-# Fetch_DST
-MICROPROGRAM[ADDR_DST_DIRECT] = mc(Signal.LATCH_TMP2_REG, Signal.MPC_DISPATCH_OP)
+# [26-28] ADC imm, reg
+MICROPROGRAM[26] = mi({Signal.LATCH_TMP1_IMM}, next_addr=27)
+MICROPROGRAM[27] = mi({Signal.LATCH_TMP2_REG}, next_addr=28)
+MICROPROGRAM[28] = mi({Signal.OP_ADC, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_DST_IMMEDIATE] = mc(Signal.LATCH_TMP2_IMM, Signal.MPC_NEXT)
+# [29-31] ADC reg, reg
+MICROPROGRAM[29] = mi({Signal.LATCH_TMP1_REG}, next_addr=30)
+MICROPROGRAM[30] = mi({Signal.LATCH_TMP2_REG}, next_addr=31)
+MICROPROGRAM[31] = mi({Signal.OP_ADC, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_DST_IMMEDIATE + 1] = mc(Signal.MPC_DISPATCH_OP)
+# [32-34] SUB imm, reg
+MICROPROGRAM[32] = mi({Signal.LATCH_TMP1_IMM}, next_addr=33)
+MICROPROGRAM[33] = mi({Signal.LATCH_TMP2_REG}, next_addr=34)
+MICROPROGRAM[34] = mi({Signal.OP_SUB, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_DST_INDIRECT] = mc(Signal.SET_AR_DST, Signal.MPC_NEXT)
+# [35-37] SUB reg, reg
+MICROPROGRAM[35] = mi({Signal.LATCH_TMP1_REG}, next_addr=36)
+MICROPROGRAM[36] = mi({Signal.LATCH_TMP2_REG}, next_addr=37)
+MICROPROGRAM[37] = mi({Signal.OP_SUB, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_DST_INDIRECT + 1] = mc(Signal.LATCH_TMP2_MEM, Signal.MPC_DISPATCH_OP)
+# [38-40] MUL imm, reg
+MICROPROGRAM[38] = mi({Signal.LATCH_TMP1_IMM}, next_addr=39)
+MICROPROGRAM[39] = mi({Signal.LATCH_TMP2_REG}, next_addr=40)
+MICROPROGRAM[40] = mi({Signal.OP_MUL, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_DST_INDIRECT_OFFSET] = mc(Signal.SET_AR_DST_OFF, Signal.MPC_NEXT)
-MICROPROGRAM[ADDR_DST_INDIRECT_OFFSET + 1] = mc(
-    Signal.LATCH_TMP2_MEM,
-    Signal.MPC_DISPATCH_OP,
-)
+# [41-43] MUL reg, reg
+MICROPROGRAM[41] = mi({Signal.LATCH_TMP1_REG}, next_addr=42)
+MICROPROGRAM[42] = mi({Signal.LATCH_TMP2_REG}, next_addr=43)
+MICROPROGRAM[43] = mi({Signal.OP_MUL, Signal.WB_FROM_ALU}, next_addr=0)
 
-# WRITE_BACK
-MICROPROGRAM[ADDR_WB_DIRECT] = mc(Signal.WB_FROM_ALU, Signal.MPC_ZERO)
+# [44-46] DIV reg, reg
+MICROPROGRAM[44] = mi({Signal.LATCH_TMP1_REG}, next_addr=45)
+MICROPROGRAM[45] = mi({Signal.LATCH_TMP2_REG}, next_addr=46)
+MICROPROGRAM[46] = mi({Signal.OP_DIV, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_WB_INDIRECT] = mc(Signal.DATA_MEMORY_STORE, Signal.MPC_ZERO)
+# [47-49] REM reg, reg
+MICROPROGRAM[47] = mi({Signal.LATCH_TMP1_REG}, next_addr=48)
+MICROPROGRAM[48] = mi({Signal.LATCH_TMP2_REG}, next_addr=49)
+MICROPROGRAM[49] = mi({Signal.OP_REM, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_WB_INDIRECT_OFFSET] = mc(Signal.DATA_MEMORY_STORE, Signal.MPC_ZERO)
+# [50-52] REM imm, reg
+MICROPROGRAM[50] = mi({Signal.LATCH_TMP1_IMM}, next_addr=51)
+MICROPROGRAM[51] = mi({Signal.LATCH_TMP2_REG}, next_addr=52)
+MICROPROGRAM[52] = mi({Signal.OP_REM, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_HALT] = mc(Signal.HALT)
+# [53-54] NEG reg
+MICROPROGRAM[53] = mi({Signal.LATCH_TMP1_REG}, next_addr=54)
+MICROPROGRAM[54] = mi({Signal.OP_NEG, Signal.WB_FROM_ALU}, next_addr=0)
 
-# MOVE (dst <- src)
-MICROPROGRAM[ADDR_MOVE] = mc(Signal.OP_PASS_TMP1, Signal.MPC_DISPATCH_WB)
+# Логические операции
+# [55-57] AND reg, reg
+MICROPROGRAM[55] = mi({Signal.LATCH_TMP1_REG}, next_addr=56)
+MICROPROGRAM[56] = mi({Signal.LATCH_TMP2_REG}, next_addr=57)
+MICROPROGRAM[57] = mi({Signal.OP_AND, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_ADD] = mc(Signal.OP_ADD, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_ADC] = mc(Signal.OP_ADC, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_SUB] = mc(Signal.OP_SUB, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_MUL] = mc(Signal.OP_MUL, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_DIV] = mc(Signal.OP_DIV, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_REM] = mc(Signal.OP_REM, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_NEG] = mc(Signal.OP_NEG, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_AND] = mc(Signal.OP_AND, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_OR] = mc(Signal.OP_OR, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_NOT] = mc(Signal.OP_NOT, Signal.MPC_DISPATCH_WB)
-MICROPROGRAM[ADDR_CMP] = mc(Signal.OP_SUB, Signal.MPC_ZERO)
+# [58-60] OR reg, reg
+MICROPROGRAM[58] = mi({Signal.LATCH_TMP1_REG}, next_addr=59)
+MICROPROGRAM[59] = mi({Signal.LATCH_TMP2_REG}, next_addr=60)
+MICROPROGRAM[60] = mi({Signal.OP_OR, Signal.WB_FROM_ALU}, next_addr=0)
 
-# dst <- port[src_imm]
-MICROPROGRAM[ADDR_IN] = mc(Signal.IO_READ, Signal.LATCH_TMP2_IO, Signal.MPC_NEXT)
+# [61-62] NOT reg
+MICROPROGRAM[61] = mi({Signal.LATCH_TMP1_REG}, next_addr=62)
+MICROPROGRAM[62] = mi({Signal.OP_NOT, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_IN + 1] = mc(Signal.OP_PASS_TMP2, Signal.MPC_DISPATCH_WB)
+# CMP
+# [63-65] CMP imm, reg
+MICROPROGRAM[63] = mi({Signal.LATCH_TMP1_IMM}, next_addr=64)
+MICROPROGRAM[64] = mi({Signal.LATCH_TMP2_REG}, next_addr=65)
+MICROPROGRAM[65] = mi({Signal.OP_SUB}, next_addr=0)
 
-# port[dst_imm] <- src
-MICROPROGRAM[ADDR_OUT] = mc(Signal.OP_PASS_TMP1, Signal.MPC_NEXT)
+# [66-68] CMP reg, reg
+MICROPROGRAM[66] = mi({Signal.LATCH_TMP1_REG}, next_addr=67)
+MICROPROGRAM[67] = mi({Signal.LATCH_TMP2_REG}, next_addr=68)
+MICROPROGRAM[68] = mi({Signal.OP_SUB}, next_addr=0)
 
-MICROPROGRAM[ADDR_OUT + 1] = mc(Signal.OP_PASS_TMP1, Signal.IO_WRITE, Signal.MPC_ZERO)
+# IO
+# [69-70] IN port -> reg
+MICROPROGRAM[69] = mi({Signal.IO_READ, Signal.LATCH_TMP2_IO}, next_addr=70)
+MICROPROGRAM[70] = mi({Signal.OP_PASS_TMP2, Signal.WB_FROM_ALU}, next_addr=0)
 
-MICROPROGRAM[ADDR_JMP] = mc(Signal.COND_TRUE, Signal.PC_BRANCH, Signal.MPC_ZERO)
-MICROPROGRAM[ADDR_BEQ] = mc(Signal.COND_EQUAL, Signal.PC_BRANCH, Signal.MPC_ZERO)
-MICROPROGRAM[ADDR_BNE] = mc(Signal.COND_NOT_EQUAL, Signal.PC_BRANCH, Signal.MPC_ZERO)
-MICROPROGRAM[ADDR_BGE] = mc(Signal.COND_GREATER_EQUAL, Signal.PC_BRANCH, Signal.MPC_ZERO)
-MICROPROGRAM[ADDR_BGT] = mc(Signal.COND_GREATER, Signal.PC_BRANCH, Signal.MPC_ZERO)
-MICROPROGRAM[ADDR_BLE] = mc(Signal.COND_LESS_EQUAL, Signal.PC_BRANCH, Signal.MPC_ZERO)
-MICROPROGRAM[ADDR_BLT] = mc(Signal.COND_LESS, Signal.PC_BRANCH, Signal.MPC_ZERO)
+# [71-72] OUT reg -> port
+MICROPROGRAM[71] = mi({Signal.LATCH_TMP1_REG}, next_addr=72)
+MICROPROGRAM[72] = mi({Signal.OP_PASS_TMP1, Signal.IO_WRITE}, next_addr=0)
 
-MICROCODE_WORD_BITS = 48
+# Условные переходы
+MICROPROGRAM[73] = mi({Signal.COND_TRUE, Signal.PC_BRANCH}, next_addr=0)
+MICROPROGRAM[74] = mi({Signal.COND_EQUAL, Signal.PC_BRANCH}, next_addr=0)
+MICROPROGRAM[75] = mi({Signal.COND_NOT_EQUAL, Signal.PC_BRANCH}, next_addr=0)
+MICROPROGRAM[76] = mi({Signal.COND_GREATER_EQUAL, Signal.PC_BRANCH}, next_addr=0)
+MICROPROGRAM[77] = mi({Signal.COND_GREATER, Signal.PC_BRANCH}, next_addr=0)
+MICROPROGRAM[78] = mi({Signal.COND_LESS_EQUAL, Signal.PC_BRANCH}, next_addr=0)
+MICROPROGRAM[79] = mi({Signal.COND_LESS, Signal.PC_BRANCH}, next_addr=0)
+
+# [80] HALT
+MICROPROGRAM[80] = mi({Signal.HALT}, next_addr=80)
+
 MICROCODE_WORD_BYTES = 6
 
 
-def encode_microprogram(program: list[frozenset[Any]]) -> bytes:
+def encode_microprogram(program: list[MicroInstruction]) -> bytes:
     result = bytearray()
-    for micro_command in program:
+    for mc in program:
         word = 0
-        for signal in micro_command:
+        for signal in mc.signals:
             word |= 1 << int(signal)
+        word |= (mc.next_addr & 0x1FF) << 39
         result += word.to_bytes(MICROCODE_WORD_BYTES, byteorder="big")
     return bytes(result)
 
 
-def decode_microinstruction(data: bytes, addr: int) -> frozenset[Any]:
+def decode_microinstruction(data: bytes, addr: int) -> MicroInstruction:
     offset = addr * MICROCODE_WORD_BYTES
     word = int.from_bytes(data[offset : offset + MICROCODE_WORD_BYTES], byteorder="big")
-    return frozenset[Any](
-        Signal(i) for i in range(MICROCODE_WORD_BITS) if (word >> i) & 1 if i in Signal._value2member_map_
-    )
+    signals = frozenset(Signal(i) for i in range(39) if (word >> i) & 1 and i in Signal._value2member_map_)
+    next_addr = (word >> 39) & 0x1FF
+    return MicroInstruction(signals, next_addr)
 
 
 MICROCODE_BYTES: bytes = encode_microprogram(MICROPROGRAM)

@@ -234,6 +234,7 @@ MICROPROGRAM[74] = mi({Signal.HALT}, next_addr=74)
 
 MICROCODE_WORD_BYTES = 6
 
+
 def encode_microprogram(program: list[MicroInstruction]) -> bytes:
     result = bytearray()
     for mc in program:

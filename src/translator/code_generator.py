@@ -338,6 +338,8 @@ class CodeGenerator(NodeVisitor):
         if symbol is None:
             return
         if node.type_ == SymbolType.LONG and symbol.type_ == SymbolType.INT:
+            pos_label = Label()
+            end_label = Label()
             self.instructions.append(
                 Instruction(
                     Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R1, src_imm=symbol.address
@@ -348,10 +350,23 @@ class CodeGenerator(NodeVisitor):
             )
 
             self.instructions.append(
+                Instruction(Opcode.CMP, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R2, src_imm=0)
+            )
+            self.instructions.append(BranchStub(pos_label, Opcode.BGE))
+
+            self.instructions.append(
+                Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=-1)
+            )
+            self.instructions += self.push_r0()
+            self.instructions.append(BranchStub(end_label, Opcode.JMP))
+
+            self.instructions.append(pos_label)
+            self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=0)
             )
             self.instructions += self.push_r0()
 
+            self.instructions.append(end_label)
             self.instructions.append(
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R2, AddrMode.DIRECT, Register.R0)
             )

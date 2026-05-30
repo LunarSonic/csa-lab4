@@ -213,7 +213,7 @@ while (i < 10) {
     ```
     long a = 100 + 24;
     ```
-  - Если переменная типа `int` участвует в выражении с `long`, то она расширяется до 64 бит (при помещении значения на стек старшее слово заполняется нулями, а младшее слово - значением переменной из памяти)
+  - Если переменная типа `int` участвует в выражении с `long`, то она расширяется до 64 бит со знаком. Младшее слово заполняется значением переменной из памяти, а старшее - знаковым расширением: `0x00000000` для неотрицательных значений и `0xFFFFFFFF` для отрицательных. Знак определяется во время выполнения (через `CMP` и условный переход `BGE`)
     ```
     long a = 5000000000;
     int m = 2147483647;
@@ -630,19 +630,22 @@ move R0 [R1]        ; mem[2] <- 20
 
 #### Структура памяти микрокоманд
 
-Память микрокоманд содержит **81 микроинструкцию**:
+Память микрокоманд содержит **75 микрокоманд**:
 
-| Адрес | Назначение                                                                |
-|-------|---------------------------------------------------------------------------|
-| 0     | FETCH                                                                     |
-| 1-19  | `MOVE` (7 комбинаций режимов адресации)                                   |
-| 20-54 | Арифметические операции (`ADD`, `ADC`, `SUB`, `MUL`, `DIV`, `REM`, `NEG`) |
-| 55-62 | Логические операции (`AND`, `OR`, `NOT`)                                  |
-| 63-68 | `CMP imm, reg` и `CMP reg, reg`                                           |
-| 69-70 | `IN port, reg`                                                            |
-| 71-72 | `OUT reg, port`                                                           |
-| 73-79 | Условные переходы (`JMP`, `BEQ`, `BNE`, `BGE`, `BGT`, `BLE`, `BLT`)       |
-| 80    | `HALT`                                                                    |                                                 
+| Адрес | Назначение                                                                    |
+|-------|-------------------------------------------------------------------------------|
+| 0     | FETCH                                                                         |
+| 1-19  | `MOVE` (7 комбинаций режимов адресации)                                       |
+| 20-37 | Арифметические операции (`ADD`, `ADC`, `SUB`) (по 2 формы: imm,reg и reg,reg) |
+| 38-46 | `MUL`, `DIV`, `REM` (reg,reg)                                                 |
+| 47-48 | `NEG`                                                                         |
+| 49-54 | Логические операции (`AND`, `OR`)                                             |
+| 55-56 | `NOT`                                                                         |
+| 57-62 | `CMP imm, reg` и `CMP reg, reg`                                               |
+| 63-64 | `IN port, reg`                                                                |
+| 65-66 | `OUT reg, port`                                                               |
+| 67-73 | Условные переходы (`JMP`, `BEQ`, `BNE`, `BGE`, `BGT`, `BLE`, `BLT`)           |
+| 74    | `HALT`                                                                        |                                                 
 
 Таблица `DISPATCH_OPCODE_SRC_DST` отображает `(opcode, src_mode, dst_mode)` на стартовый адрес микропрограммы из этой таблицы
  
@@ -659,7 +662,7 @@ move R0 [R1]        ; mem[2] <- 20
   результат `Mapping Logic`. Активируется только в микрокоманде FETCH
 
 Регистр `BranchDone` и условные сигналы `COND_*` участвуют в управлении `MUX PC`: при срабатывании
-условия и активном сигнале `PC_BRANCH` в `PC` записывается `dst_imm` вместо
+условия и активном сигнале `PC_BRANCH` в `PC` записывается `dst_imm` (адрес перехода) вместо
 `PC + size`
  
 #### Бинарное представление микрокоманды
@@ -743,7 +746,8 @@ big-endian:
 | [factorial.yaml](tests/golden/factorial.yaml)             | **4272**          | **2211**         | **98.3%** |
 | [palindrome.yaml](tests/golden/palindome.yaml)            | **7420**          | **4666**         | **81.8%** |
 | [bank_decision.yaml](tests/golden/bank_decision.yaml)     | 2007              | 1557             | 52.1%     |
-| [ext.yaml](tests/golden/ext.yaml)                         | 6751              | 4528             | 66.4%     |
+| [ext.yaml](tests/golden/ext.yaml)                         | 6757              | 4528             | 66.4%     |
+| [long_neg.yaml](tests/golden/long_neg.yaml)               | 810               | 513              | 75.0%     |
 | [prob2.yaml](tests/golden/prob2.yaml)                     | **24636**         | **12396**        | **99.4%** |
 
 Наибольший эффект от кеша наблюдается в программах с локальностью
@@ -758,13 +762,14 @@ big-endian:
 | Тест                                                      | Алгоритм                                                                                                     |
 |-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
 | [hello.yaml](tests/golden/hello.yaml)                     | Вывод строки `Hello World` в порт 3                                                                          |
-| [cat.yaml](tests/golden/cat.yaml)                         | Посимвольное чтение из порта 1 и вывод в порт 3 до исчерпания ввода                                                                   |
+| [cat.yaml](tests/golden/cat.yaml)                         | Посимвольное чтение из порта 1 и вывод в порт 3 до исчерпания ввода                                          |
 | [hello_user_name.yaml](tests/golden/hello_user_name.yaml) | Запрос имени пользователя из порта 1 и вывод приветствия в порт 3                                            |
 | [bubble_sort.yaml](tests/golden/bubble_sort.yaml)         | Считывание размера n и элементов массива из порта 0. Сортировка пузырьком и вывод чисел в порт 2             |
 | [factorial.yaml](tests/golden/factorial.yaml)             | Вычисление факториала числа, полученного из порта 0. Вывод результата в порт 2                               |
 | [palindrome.yaml](tests/golden/palindome.yaml)            | Проверка, является ли введённое слово палиндромом, строка поступает из порта 1                               |
 | [bank_decision.yaml](tests/golden/bank_decision.yaml)     | Проверка работы логических операций у 64-битных чисел                                                        |
 | [ext.yaml](tests/golden/ext.yaml)                         | Проверка работы арифметических и побитовых операций (`&`, `\|`) у 64-битных чисел, вывод результата в порт 2 |
+| [long_neg.yaml](tests/golden/long_neg.yaml)               | Проверка знакового расширения `int` -> `long` для отрицательных значений                                     |
 | [prob2.yaml](tests/golden/prob2.yaml)                     | Сумма чётных чисел Фибоначчи, не превышающих 4000000, результат выводится в порт 2                           |
 
 ### Структура golden-файла
@@ -787,25 +792,26 @@ pytest tests/ -v --update-goldens
 
 ### Результаты тестирования
 ```
-============================= test session starts ==============================
-platform linux -- Python 3.10.20, pytest-9.0.3, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.10.20/x64/bin/python
+=========================================================================== test session starts ============================================================================
+platform darwin -- Python 3.10.5, pytest-9.0.3, pluggy-1.6.0 -- /Users/sofiaabdullaeva/PycharmProjects/csa-lab4/.venv/bin/python
 cachedir: .pytest_cache
-rootdir: /home/runner/work/csa-lab4/csa-lab4
+rootdir: /Users/sofiaabdullaeva/PycharmProjects/csa-lab4
 configfile: pyproject.toml
 plugins: golden-1.0.1
-collecting ... collected 9 items
+collected 10 items                                                                                                                                                         
 
-tests/test_golden.py::test_translator_and_machine[golden/factorial.yaml] PASSED [ 11%]
-tests/test_golden.py::test_translator_and_machine[golden/palindome.yaml] PASSED [ 22%]
-tests/test_golden.py::test_translator_and_machine[golden/bank_decision.yaml] PASSED [ 33%]
-tests/test_golden.py::test_translator_and_machine[golden/ext.yaml] PASSED [ 44%]
-tests/test_golden.py::test_translator_and_machine[golden/prob2.yaml] PASSED [ 55%]
-tests/test_golden.py::test_translator_and_machine[golden/bubble_sort.yaml] PASSED [ 66%]
-tests/test_golden.py::test_translator_and_machine[golden/hello.yaml] PASSED [ 77%]
-tests/test_golden.py::test_translator_and_machine[golden/cat.yaml] PASSED [ 88%]
-tests/test_golden.py::test_translator_and_machine[golden/hello_user_name.yaml] PASSED [100%]
+tests/test_golden.py::test_translator_and_machine[golden/ext.yaml] PASSED                                                                                            [ 10%]
+tests/test_golden.py::test_translator_and_machine[golden/long_neg.yaml] PASSED                                                                                       [ 20%]
+tests/test_golden.py::test_translator_and_machine[golden/palindome.yaml] PASSED                                                                                      [ 30%]
+tests/test_golden.py::test_translator_and_machine[golden/hello_user_name.yaml] PASSED                                                                                [ 40%]
+tests/test_golden.py::test_translator_and_machine[golden/cat.yaml] PASSED                                                                                            [ 50%]
+tests/test_golden.py::test_translator_and_machine[golden/factorial.yaml] PASSED                                                                                      [ 60%]
+tests/test_golden.py::test_translator_and_machine[golden/prob2.yaml] PASSED                                                                                          [ 70%]
+tests/test_golden.py::test_translator_and_machine[golden/hello.yaml] PASSED                                                                                          [ 80%]
+tests/test_golden.py::test_translator_and_machine[golden/bubble_sort.yaml] PASSED                                                                                    [ 90%]
+tests/test_golden.py::test_translator_and_machine[golden/bank_decision.yaml] PASSED                                                                                  [100%]
 
-============================== 9 passed in 8.49s ===============================
+============================================================================ 10 passed in 2.67s ============================================================================
 ```
 
 ### Пример использования модели процессора

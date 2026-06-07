@@ -745,7 +745,7 @@ big-endian:
 | Тест                                                      | Тактов (без кеша) | Тактов (с кешем) | Hit rate  |
 |-----------------------------------------------------------|-------------------|------------------|-----------|
 | [hello.yaml](tests/golden/hello.yaml)                     | 335               | 335              | 0.0%      |
-| [cat.yaml](tests/golden/cat.yaml)                         | **1259**          | **746**          | **95.0%** |
+| [cat.yaml](tests/golden/cat.yaml)                         | **1523**          | **839**          | **97.4%** |
 | [hello_user_name.yaml](tests/golden/hello_user_name.yaml) | 1157              | 1157             | 0.0%      |
 | [bubble_sort.yaml](tests/golden/bubble_sort.yaml)         | **74522**         | **39314**        | **95.9%** |
 | [factorial.yaml](tests/golden/factorial.yaml)             | **4272**          | **2211**         | **98.3%** |

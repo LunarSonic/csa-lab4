@@ -263,6 +263,19 @@ class CodeGenerator(NodeVisitor):
                 )
             )
         else:
+            if isinstance(node.value, AstArrayReference):
+                self.emit_index_address(node.value)
+                self.instructions += self.pop_to_register(Register.R1)
+                self.instructions.append(
+                    Instruction(Opcode.MOVE, AddrMode.INDIRECT, Register.R1, AddrMode.DIRECT, Register.R1)
+                )
+                self.instructions.append(
+                    Instruction(
+                        Opcode.OUT, AddrMode.DIRECT, Register.R1, AddrMode.IMMEDIATE, Register.R0, dst_imm=node.port
+                    )
+                )
+                return
+
             if isinstance(node.value, AstString):
                 self.emit_string_literal(node.value)
                 self.instructions.append(

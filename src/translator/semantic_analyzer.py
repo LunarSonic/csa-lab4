@@ -225,6 +225,7 @@ class SemanticAnalyzer(NodeVisitor):
                 self.resolve_expression_type(node.left, expected)
                 self.resolve_expression_type(node.right, expected)
                 node.type_ = expected
+            return
 
         if isinstance(node, AstUnaryOperation):
             if node.op == "!":

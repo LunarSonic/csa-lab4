@@ -94,17 +94,17 @@ out_stdout: |
   }
   ------------------------------
   Lines of code: 5
-  Code instructions: 30
-  Code size (bytes): 140
+  Code instructions: 36
+  Code size (bytes): 156
   Data words (32-bit): 1
   Data size (bytes): 4
-  Total size (bytes): 144
+  Total size (bytes): 160
   ============================================================
   Final Output:
   Hello
 
-  Total Ticks:  746
-  Cache: hits=57 misses=3 total=60 hit_rate=95.0%
+  Total Ticks:  839
+  Cache: hits=76 misses=2 total=78 hit_rate=97.4%
 
 out_instructions_hex: |2-
     0 - 3A01000007FF         - MOVE 2047 R7
@@ -114,7 +114,7 @@ out_instructions_hex: |2-
    20 - 05C1                 - MOVE [R7] R0
    22 - 3A0200000001         - ADD 1 R7
    28 - 020C00000000         - CMP 0 R0
-   34 - 40100000008A         - BEQ 138
+   34 - 40100000009A         - BEQ 154
    40 - 020100000000         - MOVE 0 R0
    46 - 3A0400000001         - SUB 1 R7
    52 - B801                 - MOVE R0 [R7]
@@ -129,14 +129,20 @@ out_instructions_hex: |2-
    86 - 020D00000001         - IN 1 R0
    92 - 8801                 - MOVE R0 [R1]
    94 - 020100000000         - MOVE 0 R0
-  100 - 0C01                 - MOVE [R0] R1
-  102 - 0A0C00000000         - CMP 0 R1
-  108 - 401000000084         - BEQ 132
-  114 - 404E00000003         - OUT R1 3
-  120 - 020200000001         - ADD 1 R0
-  126 - 400F00000064         - JMP 100
-  132 - 400F00000006         - JMP 6
-  138 - 0000                 - HALT
+  100 - 3A0400000001         - SUB 1 R7
+  106 - B801                 - MOVE R0 [R7]
+  108 - 15C1                 - MOVE [R7] R2
+  110 - 3A0200000001         - ADD 1 R7
+  116 - 020100000000         - MOVE 0 R0
+  122 - 0082                 - ADD R2 R0
+  124 - 3A0400000001         - SUB 1 R7
+  130 - B801                 - MOVE R0 [R7]
+  132 - 0DC1                 - MOVE [R7] R1
+  134 - 3A0200000001         - ADD 1 R7
+  140 - 0C41                 - MOVE [R1] R1
+  142 - 404E00000003         - OUT R1 3
+  148 - 400F00000006         - JMP 6
+  154 - 0000                 - HALT
 
 out_data_hex: |2-
     0 : 0

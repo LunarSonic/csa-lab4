@@ -397,9 +397,7 @@ class CodeGenerator(NodeVisitor):
             )
             self.instructions += self.push_r0()
             self.instructions.append(
-                Instruction(
-                    Opcode.MOVE, AddrMode.INDIRECT_OFFSET, Register.R1, AddrMode.DIRECT, Register.R0, src_imm=4
-                )
+                Instruction(Opcode.MOVE, AddrMode.INDIRECT_OFFSET, Register.R1, AddrMode.DIRECT, Register.R0, src_imm=4)
             )
             self.instructions += self.push_r0()
             return
@@ -669,9 +667,7 @@ class CodeGenerator(NodeVisitor):
         self.instructions.append(
             Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=4)
         )
-        self.instructions.append(
-            Instruction(Opcode.MUL, AddrMode.DIRECT, Register.R0, AddrMode.DIRECT, Register.R2)
-        )
+        self.instructions.append(Instruction(Opcode.MUL, AddrMode.DIRECT, Register.R0, AddrMode.DIRECT, Register.R2))
         self.instructions.append(
             Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=base)
         )

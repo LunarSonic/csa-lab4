@@ -66,11 +66,11 @@ class SemanticAnalyzer(NodeVisitor):
         if node.type_ == SymbolType.ARRAY:
             if not isinstance(node.value, AstArray):
                 raise ArrayInitializationError(node.name)
-            self.data_address_counter += node.value.size
+            self.data_address_counter += node.value.size * 4
         elif node.type_ == SymbolType.LONG:
-            self.data_address_counter += 2
+            self.data_address_counter += 8
         else:
-            self.data_address_counter += 1
+            self.data_address_counter += 4
 
         symbol = Symbol(node.name, node.type_, address)
         self.symbol_table.declare(symbol)

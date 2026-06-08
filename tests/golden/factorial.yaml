@@ -23,51 +23,51 @@ out_log: |-
   DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     6 | PC:  12 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @SUB
   DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     7 | PC:  18 | mPC: 32 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     8 | PC:  18 | mPC: 33 | AR:   0 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     9 | PC:  18 | mPC: 34 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    10 | PC:  18 | mPC:  0 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     8 | PC:  18 | mPC: 33 | AR:   0 | TMP1:    4 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     9 | PC:  18 | mPC: 34 | AR:   0 | TMP1:    4 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    10 | PC:  18 | mPC:  0 | AR:   0 | TMP1:    4 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    11 | PC:  20 | mPC:  5 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    12 | PC:  20 | mPC:  6 | AR: 2046 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    13 | PC:  20 | mPC:  7 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.cache:cache.py:48 CACHE MISS write addr=2046 value=0 waiting 10 ticks
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    14 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    15 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    16 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    17 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    18 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    19 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    20 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    21 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    22 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    23 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    11 | PC:  20 | mPC:  5 | AR:   0 | TMP1:    4 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    12 | PC:  20 | mPC:  6 | AR: 2043 | TMP1:    4 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    13 | PC:  20 | mPC:  7 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.cache:cache.py:59 CACHE MISS write addr=2043 value=0 waiting 10 ticks
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    14 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    15 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    16 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    17 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    18 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    19 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    20 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    21 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    22 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    23 | PC:  20 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    24 | PC:  22 | mPC:  8 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    25 | PC:  22 | mPC:  9 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.cache:cache.py:30 CACHE HIT read addr=2046 value=0
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    26 | PC:  22 | mPC: 10 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    27 | PC:  22 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    24 | PC:  22 | mPC:  8 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    25 | PC:  22 | mPC:  9 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.cache:cache.py:41 CACHE HIT read addr=2043 value=0
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    26 | PC:  22 | mPC: 10 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    27 | PC:  22 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @ADD
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    28 | PC:  28 | mPC: 20 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    29 | PC:  28 | mPC: 21 | AR: 2046 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    30 | PC:  28 | mPC: 22 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    31 | PC:  28 | mPC:  0 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    28 | PC:  28 | mPC: 20 | AR: 2043 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    29 | PC:  28 | mPC: 21 | AR: 2043 | TMP1:    4 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    30 | PC:  28 | mPC: 22 | AR: 2043 | TMP1:    4 | TMP2: 2043 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2043
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    31 | PC:  28 | mPC:  0 | AR: 2043 | TMP1:    4 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    32 | PC:  34 | mPC:  1 | AR: 2046 | TMP1:    1 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    33 | PC:  34 | mPC:  2 | AR: 2046 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    34 | PC:  34 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    32 | PC:  34 | mPC:  1 | AR: 2043 | TMP1:    4 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    33 | PC:  34 | mPC:  2 | AR: 2043 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    34 | PC:  34 | mPC:  0 | AR: 2043 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    35 | PC:  36 | mPC:  5 | AR: 2046 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    36 | PC:  36 | mPC:  6 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    37 | PC:  36 | mPC:  7 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.cache:cache.py:48 CACHE MISS write addr=0 value=0 waiting 10 ticks
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    38 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    39 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    40 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    41 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    42 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    43 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    44 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2046 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    35 | PC:  36 | mPC:  5 | AR: 2043 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    36 | PC:  36 | mPC:  6 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    37 | PC:  36 | mPC:  7 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.cache:cache.py:59 CACHE MISS write addr=0 value=0 waiting 10 ticks
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    38 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    39 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    40 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    41 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    42 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    43 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    44 | PC:  36 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2: 2043 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
   DEBUG    src.mac
   EOF
 
@@ -122,92 +122,92 @@ out_stdout: |
 out_instructions_hex: |2-
     0 - 3A01000007FF         - MOVE 2047 R7
     6 - 020100000000         - MOVE 0 R0
-   12 - 3A0400000001         - SUB 1 R7
+   12 - 3A0400000004         - SUB 4 R7
    18 - B801                 - MOVE R0 [R7]
    20 - 05C1                 - MOVE [R7] R0
-   22 - 3A0200000001         - ADD 1 R7
+   22 - 3A0200000004         - ADD 4 R7
    28 - 0A0100000000         - MOVE 0 R1
    34 - 8801                 - MOVE R0 [R1]
    36 - 020100000001         - MOVE 1 R0
-   42 - 3A0400000001         - SUB 1 R7
+   42 - 3A0400000004         - SUB 4 R7
    48 - B801                 - MOVE R0 [R7]
    50 - 05C1                 - MOVE [R7] R0
-   52 - 3A0200000001         - ADD 1 R7
-   58 - 0A0100000001         - MOVE 1 R1
+   52 - 3A0200000004         - ADD 4 R7
+   58 - 0A0100000004         - MOVE 4 R1
    64 - 8801                 - MOVE R0 [R1]
    66 - 0A0100000000         - MOVE 0 R1
    72 - 020D00000000         - IN 0 R0
    78 - 8801                 - MOVE R0 [R1]
    80 - 0A0100000000         - MOVE 0 R1
    86 - 0441                 - MOVE [R1] R0
-   88 - 3A0400000001         - SUB 1 R7
+   88 - 3A0400000004         - SUB 4 R7
    94 - B801                 - MOVE R0 [R7]
    96 - 020100000001         - MOVE 1 R0
-  102 - 3A0400000001         - SUB 1 R7
+  102 - 3A0400000004         - SUB 4 R7
   108 - B801                 - MOVE R0 [R7]
   110 - 15C1                 - MOVE [R7] R2
-  112 - 3A0200000001         - ADD 1 R7
+  112 - 3A0200000004         - ADD 4 R7
   118 - 0DC1                 - MOVE [R7] R1
-  120 - 3A0200000001         - ADD 1 R7
+  120 - 3A0200000004         - ADD 4 R7
   126 - 088C                 - CMP R2 R1
   128 - 40130000009A         - BGT 154
   134 - 020100000000         - MOVE 0 R0
-  140 - 3A0400000001         - SUB 1 R7
+  140 - 3A0400000004         - SUB 4 R7
   146 - B801                 - MOVE R0 [R7]
   148 - 400F000000A8         - JMP 168
   154 - 020100000001         - MOVE 1 R0
-  160 - 3A0400000001         - SUB 1 R7
+  160 - 3A0400000004         - SUB 4 R7
   166 - B801                 - MOVE R0 [R7]
   168 - 05C1                 - MOVE [R7] R0
-  170 - 3A0200000001         - ADD 1 R7
+  170 - 3A0200000004         - ADD 4 R7
   176 - 020C00000000         - CMP 0 R0
   182 - 401000000158         - BEQ 344
-  188 - 0A0100000001         - MOVE 1 R1
+  188 - 0A0100000004         - MOVE 4 R1
   194 - 0441                 - MOVE [R1] R0
-  196 - 3A0400000001         - SUB 1 R7
+  196 - 3A0400000004         - SUB 4 R7
   202 - B801                 - MOVE R0 [R7]
   204 - 0A0100000000         - MOVE 0 R1
   210 - 0441                 - MOVE [R1] R0
-  212 - 3A0400000001         - SUB 1 R7
+  212 - 3A0400000004         - SUB 4 R7
   218 - B801                 - MOVE R0 [R7]
   220 - 15C1                 - MOVE [R7] R2
-  222 - 3A0200000001         - ADD 1 R7
+  222 - 3A0200000004         - ADD 4 R7
   228 - 0DC1                 - MOVE [R7] R1
-  230 - 3A0200000001         - ADD 1 R7
+  230 - 3A0200000004         - ADD 4 R7
   236 - 0885                 - MUL R2 R1
   238 - 0041                 - MOVE R1 R0
-  240 - 3A0400000001         - SUB 1 R7
+  240 - 3A0400000004         - SUB 4 R7
   246 - B801                 - MOVE R0 [R7]
   248 - 05C1                 - MOVE [R7] R0
-  250 - 3A0200000001         - ADD 1 R7
-  256 - 0A0100000001         - MOVE 1 R1
+  250 - 3A0200000004         - ADD 4 R7
+  256 - 0A0100000004         - MOVE 4 R1
   262 - 8801                 - MOVE R0 [R1]
   264 - 0A0100000000         - MOVE 0 R1
   270 - 0441                 - MOVE [R1] R0
-  272 - 3A0400000001         - SUB 1 R7
+  272 - 3A0400000004         - SUB 4 R7
   278 - B801                 - MOVE R0 [R7]
   280 - 020100000001         - MOVE 1 R0
-  286 - 3A0400000001         - SUB 1 R7
+  286 - 3A0400000004         - SUB 4 R7
   292 - B801                 - MOVE R0 [R7]
   294 - 15C1                 - MOVE [R7] R2
-  296 - 3A0200000001         - ADD 1 R7
+  296 - 3A0200000004         - ADD 4 R7
   302 - 0DC1                 - MOVE [R7] R1
-  304 - 3A0200000001         - ADD 1 R7
+  304 - 3A0200000004         - ADD 4 R7
   310 - 0884                 - SUB R2 R1
   312 - 0041                 - MOVE R1 R0
-  314 - 3A0400000001         - SUB 1 R7
+  314 - 3A0400000004         - SUB 4 R7
   320 - B801                 - MOVE R0 [R7]
   322 - 05C1                 - MOVE [R7] R0
-  324 - 3A0200000001         - ADD 1 R7
+  324 - 3A0200000004         - ADD 4 R7
   330 - 0A0100000000         - MOVE 0 R1
   336 - 8801                 - MOVE R0 [R1]
   338 - 400F00000050         - JMP 80
-  344 - 0A0100000001         - MOVE 1 R1
+  344 - 0A0100000004         - MOVE 4 R1
   350 - 0441                 - MOVE [R1] R0
-  352 - 3A0400000001         - SUB 1 R7
+  352 - 3A0400000004         - SUB 4 R7
   358 - B801                 - MOVE R0 [R7]
   360 - 05C1                 - MOVE [R7] R0
-  362 - 3A0200000001         - ADD 1 R7
+  362 - 3A0200000004         - ADD 4 R7
   368 - 400E00000002         - OUT R0 2
   374 - 0000                 - HALT
 

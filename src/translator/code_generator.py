@@ -59,17 +59,17 @@ class CodeGenerator(NodeVisitor):
         self.instructions: list[Instruction | Label | BranchStub] = []
 
     def push_r0(self) -> list[Instruction]:
-        """Положить на стек: R7 <- R7 - 1, mem[R7] <- R0"""
+        """Положить на стек: R7 <- R7 - 4, mem[R7] <- R0"""
         return [
-            Instruction(Opcode.SUB, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R7, src_imm=1),
+            Instruction(Opcode.SUB, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R7, src_imm=4),
             Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R0, AddrMode.INDIRECT, Register.R7),
         ]
 
     def pop_to_register(self, reg: Register) -> list[Instruction]:
-        """Снять со стека: reg <- mem[R7], R7 <- R7 + 1"""
+        """Снять со стека: reg <- mem[R7], R7 <- R7 + 4"""
         return [
             Instruction(Opcode.MOVE, AddrMode.INDIRECT, Register.R7, AddrMode.DIRECT, reg),
-            Instruction(Opcode.ADD, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R7, src_imm=1),
+            Instruction(Opcode.ADD, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R7, src_imm=4),
         ]
 
     def link(self) -> list[Instruction]:
@@ -124,7 +124,7 @@ class CodeGenerator(NodeVisitor):
         if symbol is None:
             return
         if symbol.type_ == SymbolType.INT:
-            symbol_address = len(self.data)
+            symbol_address = len(self.data) * 4
             self.data.append(0)
             symbol.address = symbol_address
 
@@ -140,7 +140,7 @@ class CodeGenerator(NodeVisitor):
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R0, AddrMode.INDIRECT, Register.R1)
             )
         elif symbol.type_ == SymbolType.LONG:
-            symbol_address = len(self.data)
+            symbol_address = len(self.data) * 4
             self.data += [0, 0]
             symbol.address = symbol_address
 
@@ -157,19 +157,19 @@ class CodeGenerator(NodeVisitor):
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R2, AddrMode.INDIRECT, Register.R0)
             )
             self.instructions.append(
-                Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.INDIRECT_OFFSET, Register.R0, dst_imm=1)
+                Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.INDIRECT_OFFSET, Register.R0, dst_imm=4)
             )
         elif symbol.type_ == SymbolType.STRING:
             if isinstance(node.value, AstString):
                 self.emit_string_literal(node.value)
                 symbol.address = node.value.address
             elif isinstance(node.value, AstArray):
-                node.value.address = len(self.data)
+                node.value.address = len(self.data) * 4
                 self.data += [0] * node.value.size
                 symbol.address = node.value.address
 
         elif symbol.type_ == SymbolType.ARRAY:
-            node.value.address = len(self.data)
+            node.value.address = len(self.data) * 4
             self.data += [0] * node.value.size
             symbol.address = node.value.address
 
@@ -210,7 +210,7 @@ class CodeGenerator(NodeVisitor):
                 Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R2, AddrMode.INDIRECT, Register.R0)
             )
             self.instructions.append(
-                Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.INDIRECT_OFFSET, Register.R0, dst_imm=1)
+                Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.INDIRECT_OFFSET, Register.R0, dst_imm=4)
             )
         elif symbol.type_ in (SymbolType.STRING, SymbolType.ARRAY):
             if isinstance(node.expression, AstVariableReference):
@@ -397,7 +397,9 @@ class CodeGenerator(NodeVisitor):
             )
             self.instructions += self.push_r0()
             self.instructions.append(
-                Instruction(Opcode.MOVE, AddrMode.INDIRECT_OFFSET, Register.R1, AddrMode.DIRECT, Register.R0, src_imm=1)
+                Instruction(
+                    Opcode.MOVE, AddrMode.INDIRECT_OFFSET, Register.R1, AddrMode.DIRECT, Register.R0, src_imm=4
+                )
             )
             self.instructions += self.push_r0()
             return
@@ -664,18 +666,25 @@ class CodeGenerator(NodeVisitor):
 
         self.emit_expression(node.index)
         self.instructions += self.pop_to_register(Register.R2)  # R2 <- Index
-
+        self.instructions.append(
+            Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=4)
+        )
+        self.instructions.append(
+            Instruction(Opcode.MUL, AddrMode.DIRECT, Register.R0, AddrMode.DIRECT, Register.R2)
+        )
         self.instructions.append(
             Instruction(Opcode.MOVE, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=base)
         )
-        self.instructions.append(Instruction(Opcode.ADD, AddrMode.DIRECT, Register.R2, AddrMode.DIRECT, Register.R0))
+        self.instructions.append(
+            Instruction(Opcode.ADD, AddrMode.DIRECT, Register.R2, AddrMode.DIRECT, Register.R0)
+        )  # R0 <- index * 4 + base
         self.instructions += self.push_r0()
 
     def emit_string_literal(self, node: AstString) -> None:
         """Запись строкового литерала в память данных"""
         if node.address != -1:
             return
-        node.address = len(self.data)
+        node.address = len(self.data) * 4
         for ch in node.value:
             self.data.append(ord(ch))
         self.data.append(0)
@@ -697,7 +706,7 @@ class CodeGenerator(NodeVisitor):
             Instruction(Opcode.OUT, AddrMode.DIRECT, Register.R1, AddrMode.IMMEDIATE, Register.R0, dst_imm=port)
         )
         self.instructions.append(
-            Instruction(Opcode.ADD, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=1)
+            Instruction(Opcode.ADD, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=4)
         )
         self.instructions.append(BranchStub(loop_label, Opcode.JMP))
         self.instructions.append(end_label)
@@ -719,7 +728,7 @@ class CodeGenerator(NodeVisitor):
         self.instructions.append(BranchStub(end_label, Opcode.BEQ))
         self.instructions.append(Instruction(Opcode.MOVE, AddrMode.DIRECT, Register.R1, AddrMode.INDIRECT, Register.R0))
         self.instructions.append(
-            Instruction(Opcode.ADD, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=1)
+            Instruction(Opcode.ADD, AddrMode.IMMEDIATE, Register.R0, AddrMode.DIRECT, Register.R0, src_imm=4)
         )
         self.instructions.append(BranchStub(loop_label, Opcode.JMP))
         self.instructions.append(end_label)

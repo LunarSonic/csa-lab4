@@ -64,44 +64,45 @@ def mi(signals: set[Signal], next_addr: int = 0) -> MicroInstruction:
 
 
 DISPATCH_OPCODE_SRC_DST = {
-    (0, 0, 0): 74,  # HALT                [74]
-    (1, 1, 0): 1,  # MOVE imm, reg        [1-2]
-    (1, 0, 0): 3,  # MOVE reg, reg        [3-4]
-    (1, 0, 2): 5,  # MOVE reg, [reg]      [5-7]
-    (1, 2, 0): 8,  # MOVE [reg], reg      [8-10]
-    (1, 0, 3): 11,  # MOVE reg, [reg+off] [11-13]
-    (1, 1, 2): 14,  # MOVE imm, [reg]     [14-16]
-    (1, 3, 0): 17,  # MOVE [reg+off], reg [17-19]
-    (2, 1, 0): 20,  # ADD imm, reg        [20-22]
-    (2, 0, 0): 23,  # ADD reg, reg        [23-25]
-    (3, 1, 0): 26,  # ADC imm, reg        [26-28]
-    (3, 0, 0): 29,  # ADC reg, reg        [29-31]
-    (4, 1, 0): 32,  # SUB imm, reg        [32-34]
-    (4, 0, 0): 35,  # SUB reg, reg        [35-37]
-    (5, 0, 0): 38,  # MUL reg, reg        [38-40]
-    (6, 0, 0): 41,  # DIV reg, reg        [41-43]
-    (7, 0, 0): 44,  # REM reg, reg        [44-46]
-    (8, 0, 0): 47,  # NEG reg             [47-48]
-    (9, 0, 0): 49,  # AND reg, reg        [49-51]
-    (10, 0, 0): 52,  # OR reg, reg        [52-54]
-    (11, 0, 0): 55,  # NOT reg            [55-56]
-    (12, 1, 0): 57,  # CMP imm, reg       [57-59]
-    (12, 0, 0): 60,  # CMP reg, reg       [60-62]
-    (13, 1, 0): 63,  # IN port, reg       [63-64]
-    (14, 0, 1): 65,  # OUT reg, port      [65-66]
-    (15, 0, 1): 67,  # JMP imm            [67]
-    (16, 0, 1): 68,  # BEQ imm            [68]
-    (17, 0, 1): 69,  # BNE imm            [69]
-    (18, 0, 1): 70,  # BGE imm            [70]
-    (19, 0, 1): 71,  # BGT imm            [71]
-    (20, 0, 1): 72,  # BLE imm            [72]
-    (21, 0, 1): 73,  # BLT imm            [73]
+    (1, 1, 0): 1,   # MOVE imm, reg        [1-2]
+    (1, 0, 0): 3,   # MOVE reg, reg        [3-4]
+    (1, 0, 2): 5,   # MOVE reg, [reg]      [5-7]
+    (1, 2, 0): 8,   # MOVE [reg], reg      [8-10]
+    (1, 0, 3): 11,  # MOVE reg, [reg+off]  [11-13]
+    (1, 1, 2): 14,  # MOVE imm, [reg]      [14-16]
+    (1, 3, 0): 17,  # MOVE [reg+off], reg  [17-19]
+    (2, 1, 0): 20,  # ADD imm, reg         [20-22]
+    (2, 0, 0): 23,  # ADD reg, reg         [23-25]
+    (3, 1, 0): 26,  # ADC imm, reg         [26-28]
+    (3, 0, 0): 29,  # ADC reg, reg         [29-31]
+    (4, 1, 0): 32,  # SUB imm, reg         [32-34]
+    (4, 0, 0): 35,  # SUB reg, reg         [35-37]
+    (5, 0, 0): 38,  # MUL reg, reg         [38-40]
+    (6, 0, 0): 41,  # DIV reg, reg         [41-43]
+    (7, 0, 0): 44,  # REM reg, reg         [44-46]
+    (8, 0, 0): 47,  # NEG reg              [47-48]
+    (9, 0, 0): 49,  # AND reg, reg         [49-51]
+    (10, 0, 0): 52, # OR reg, reg          [52-54]
+    (11, 0, 0): 55, # NOT reg              [55-56]
+    (12, 1, 0): 57, # CMP imm, reg         [57-59]
+    (12, 0, 0): 60, # CMP reg, reg         [60-62]
+    (13, 1, 0): 63, # IN port, reg         [63-64]
+    (14, 0, 1): 65, # OUT reg, port        [65-66]
+    (15, 0, 1): 67, # JMP imm              [67]
+    (16, 0, 1): 68, # BEQ imm              [68]
+    (17, 0, 1): 69, # BNE imm              [69]
+    (18, 0, 1): 70, # BGE imm              [70]
+    (19, 0, 1): 71, # BGT imm              [71]
+    (20, 0, 1): 72, # BLE imm              [72]
+    (21, 0, 1): 73, # BLT imm              [73]
+    (0, 0, 0): 74,  # HALT                 [74]
 }
 
 MICROPROGRAM: list[MicroInstruction] = [mi(set(), 0)] * 75
 
 # [0] FETCH
 MICROPROGRAM[0] = mi({Signal.INSTRUCTION_MEMORY_LOAD, Signal.LATCH_IR, Signal.MPC_DECODE})
+
 # MOVE imm, reg
 MICROPROGRAM[1] = mi({Signal.LATCH_TMP1_IMM}, next_addr=2)
 MICROPROGRAM[2] = mi({Signal.OP_PASS_TMP1, Signal.WB_FROM_ALU}, next_addr=0)
@@ -229,6 +230,7 @@ MICROPROGRAM[71] = mi({Signal.COND_GREATER, Signal.PC_BRANCH}, next_addr=0)
 MICROPROGRAM[72] = mi({Signal.COND_LESS_EQUAL, Signal.PC_BRANCH}, next_addr=0)
 # BLT imm
 MICROPROGRAM[73] = mi({Signal.COND_LESS, Signal.PC_BRANCH}, next_addr=0)
+
 # HALT
 MICROPROGRAM[74] = mi({Signal.HALT}, next_addr=74)
 

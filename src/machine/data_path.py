@@ -11,8 +11,11 @@ class DataPath:
     def __init__(self, data_mem_size: int, data_init: list[int], input_buffer: list) -> None:
         self.memory = [0] * data_mem_size
         for i, val in enumerate(data_init):
-            if i < data_mem_size:
-                self.memory[i] = val
+            addr = i * 4
+            self.memory[addr] = (val >> 24) & 0xFF
+            self.memory[addr + 1] = (val >> 16) & 0xFF
+            self.memory[addr + 2] = (val >> 8) & 0xFF
+            self.memory[addr + 3] = val & 0xFF
 
         self.cache = Cache()
         self.registers = [0] * 8

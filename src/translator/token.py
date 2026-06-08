@@ -20,7 +20,7 @@ class TokenType(Enum):
     READ = "read"
     INT = "int"
     LONG = "long"
-    STRING_TYPE = "string"
+    STRING = "string"
     ARRAY = "array"
 
     ASSIGN = "="
@@ -54,5 +54,4 @@ class TokenType(Enum):
 
     NUMBER = "NUMBER"
     VARIABLE_NAME = "ID"
-    STRING = "STRING"
     EOF = "EOF"

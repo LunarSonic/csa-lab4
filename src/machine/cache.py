@@ -16,6 +16,17 @@ class CacheLine:
         return f"CacheLine(addr={self.addr}, value={self.value_})"
 
 
+def read_word(memory: list[int], addr: int) -> int:
+    return (memory[addr] << 24) | (memory[addr + 1] << 16) | (memory[addr + 2] << 8) | memory[addr + 3]
+
+
+def write_word(memory: list[int], addr: int, value_: int) -> None:
+    memory[addr] = (value_ >> 24) & 0xFF
+    memory[addr + 1] = (value_ >> 16) & 0xFF
+    memory[addr + 2] = (value_ >> 8) & 0xFF
+    memory[addr + 3] = value_ & 0xFF
+
+
 class Cache:
     def __init__(self) -> None:
         self.lines: dict[int, CacheLine] = {}
@@ -31,14 +42,14 @@ class Cache:
             return line.value_, CACHE_HIT_TICKS
 
         self.misses += 1
-        value_ = memory[addr]
+        value_ = read_word(memory, addr)
         logger.debug("CACHE MISS read addr=%d waiting %d ticks...", addr, CACHE_MISS_TICKS)
         self.load(addr, value_)
         return value_, CACHE_MISS_TICKS
 
     def write(self, addr: int, memory: list[int], value_: int) -> int:
         hit = addr in self.lines
-        memory[addr] = value_
+        write_word(memory, addr, value_)
         if hit:
             self.lines[addr].value_ = value_
             self.hits += 1

@@ -745,14 +745,14 @@ big-endian:
 | Тест                                                      | Тактов (без кеша) | Тактов (с кешем) | Hit rate  |
 |-----------------------------------------------------------|-------------------|------------------|-----------|
 | [hello.yaml](tests/golden/hello.yaml)                     | 335               | 335              | 0.0%      |
-| [cat.yaml](tests/golden/cat.yaml)                         | **1523**          | **839**          | **97.4%** |
+| [cat.yaml](tests/golden/cat.yaml)                         | **1614**          | **930**          | **97.4%** |
 | [hello_user_name.yaml](tests/golden/hello_user_name.yaml) | 1157              | 1157             | 0.0%      |
-| [bubble_sort.yaml](tests/golden/bubble_sort.yaml)         | **74522**         | **39314**        | **95.9%** |
+| [bubble_sort.yaml](tests/golden/bubble_sort.yaml)         | **76048**         | **40840**        | **95.9%** |
 | [factorial.yaml](tests/golden/factorial.yaml)             | **4272**          | **2211**         | **98.3%** |
-| [palindrome.yaml](tests/golden/palindome.yaml)            | **7420**          | **4666**         | **81.8%** |
+| [palindrome.yaml](tests/golden/palindome.yaml)            | **7518**          | **4764**         | **81.8%** |
 | [bank_decision.yaml](tests/golden/bank_decision.yaml)     | 2007              | 1557             | 52.1%     |
-| [ext.yaml](tests/golden/ext.yaml)                         | 6757              | 4528             | 66.4%     |
-| [long_neg.yaml](tests/golden/long_neg.yaml)               | 810               | 513              | 75.0%     |
+| [ext.yaml](tests/golden/ext.yaml)                         | 6799              | 4576             | 66.4%     |
+| [long_neg.yaml](tests/golden/long_neg.yaml)               | 824               | 527              | 75.0%     |
 | [prob2.yaml](tests/golden/prob2.yaml)                     | **24636**         | **12396**        | **99.4%** |
 
 Наибольший эффект от кеша наблюдается в программах с локальностью
@@ -828,29 +828,40 @@ tests/test_golden.py::test_translator_and_machine[golden/bank_decision.yaml] PAS
   DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     3 | PC:   6 | mPC:  0 | AR:   0 | TMP1: 2047 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
   DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     4 | PC:  12 | mPC:  1 | AR:   0 | TMP1: 2047 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     5 | PC:  12 | mPC:  2 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     6 | PC:  12 | mPC:  0 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @SUB
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     7 | PC:  18 | mPC: 32 | AR:   0 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     8 | PC:  18 | mPC: 33 | AR:   0 | TMP1:    1 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     9 | PC:  18 | mPC: 34 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    10 | PC:  18 | mPC:  0 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     5 | PC:  12 | mPC:  2 | AR:   0 | TMP1:   80 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     6 | PC:  12 | mPC:  0 | AR:   0 | TMP1:   80 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
   DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @MOVE
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    11 | PC:  20 | mPC:  5 | AR:   0 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    12 | PC:  20 | mPC:  6 | AR: 2046 | TMP1:    1 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    13 | PC:  20 | mPC:  7 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.cache:cache.py:48 CACHE MISS write addr=2046 value=0 waiting 10 ticks
-  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    14 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    15 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    16 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    17 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    18 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    19 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    20 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    21 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    22 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
-  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    23 | PC:  20 | mPC:  0 | AR: 2046 | TMP1:    0 | TMP2: 2047 | Z:0 N:0 V:0 C:1 | R0:   0 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2046
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     7 | PC:  14 | mPC:  8 | AR:   0 | TMP1:   80 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     8 | PC:  14 | mPC:  9 | AR:  80 | TMP1:   80 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.cache:cache.py:46 CACHE MISS read addr=80 waiting 10 ticks...
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:     9 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    10 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    11 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    12 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    13 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    14 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    15 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    16 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    17 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:32 TICK:    18 | PC:  14 | mPC: 10 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:   0 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    19 | PC:  14 | mPC:  0 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @CMP
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    20 | PC:  20 | mPC: 57 | AR:  80 | TMP1:   87 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    21 | PC:  20 | mPC: 58 | AR:  80 | TMP1:    0 | TMP2:    0 | Z:0 N:0 V:0 C:0 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    22 | PC:  20 | mPC: 59 | AR:  80 | TMP1:    0 | TMP2:   87 | Z:0 N:0 V:0 C:0 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    23 | PC:  20 | mPC:  0 | AR:  80 | TMP1:    0 | TMP2:   87 | Z:0 N:0 V:0 C:1 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @BEQ
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    24 | PC:  26 | mPC: 68 | AR:  80 | TMP1:    0 | TMP2:   87 | Z:0 N:0 V:0 C:1 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    25 | PC:  26 | mPC:  0 | AR:  80 | TMP1:    0 | TMP2:   87 | Z:0 N:0 V:0 C:1 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:55 signal_latch_ir @OUT
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    26 | PC:  32 | mPC: 65 | AR:  80 | TMP1:    0 | TMP2:   87 | Z:0 N:0 V:0 C:1 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    27 | PC:  32 | mPC: 66 | AR:  80 | TMP1:   87 | TMP2:   87 | Z:0 N:0 V:0 C:1 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  DEBUG    src.machine.control_unit:control_unit.py:39 TICK:    28 | PC:  32 | mPC:  0 | AR:  80 | TMP1:   87 | TMP2:   87 | Z:0 N:0 V:0 C:1 | R0:  80 R1:  87 R2:   0 R3:   0 R4:   0 R5:   0 R6:   0 R7: 2047
+  ...
   
-  Total Ticks:  39314
-  Cache: hits=3912 misses=166 total=4078 hit_rate=95.9%
+  Final Output:
+  What is your name?
+  Hello, Sonya!
+  Total Ticks:  1157
+  Cache: hits=0 misses=42 total=42 hit_rate=0.0%
 ```

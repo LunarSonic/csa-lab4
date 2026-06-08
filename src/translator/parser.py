@@ -23,7 +23,7 @@ from src.util.exceptions import UnexpectedTokenError
 type_map = {
     TokenType.INT: SymbolType.INT,
     TokenType.LONG: SymbolType.LONG,
-    TokenType.STRING_TYPE: SymbolType.STRING,
+    TokenType.STRING: SymbolType.STRING,
     TokenType.ARRAY: SymbolType.ARRAY,
 }
 
@@ -50,7 +50,7 @@ class Parser:
 
     def parse_statement(self):
         tok = self.current_token
-        if tok.type in (TokenType.INT, TokenType.LONG, TokenType.STRING_TYPE, TokenType.ARRAY):
+        if tok.type in (TokenType.INT, TokenType.LONG, TokenType.STRING, TokenType.ARRAY):
             return self.parse_declaration()
         if tok.type == TokenType.VARIABLE_NAME:
             return self.parse_assignment()
@@ -81,7 +81,7 @@ class Parser:
         var_name = self.current_token.value
         self.process(TokenType.VARIABLE_NAME)
         self.process(TokenType.ASSIGN)
-        if type_token.type in (TokenType.ARRAY, TokenType.STRING_TYPE) and self.current_token.type == TokenType.LBRACE:
+        if type_token.type in (TokenType.ARRAY, TokenType.STRING) and self.current_token.type == TokenType.LBRACE:
             self.process(TokenType.LBRACE)
             size = int(self.current_token.value)
             self.process(TokenType.NUMBER)
